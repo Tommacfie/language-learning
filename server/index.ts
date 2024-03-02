@@ -44,5 +44,5 @@ const startServer = async () => {
 startServer();
 
 app.listen({ port: PORT }, () => {
-  logWithDate(`✅ Server ready at http://localhost:4000${server.graphqlPath}`);
+  logWithDate(`✅ Server ready at http://localhost:4000/graphql`);
 });
