@@ -1,0 +1,26 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "nodemon --exec ts-node index.ts"
+  },
+  "author": "Tom Macfie",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "@types/node": "^18.11.0"
+  },
+  "dependencies": {
+    "apollo-server-express": "^3.13.0",
+    "dotenv": "^16.4.5",
+    "eslint": "^8.57.0",
+    "graphql": "^16.8.1",
+    "graphql-compose-mongoose": "^10.0.0",
+    "mongoose": "^8.2.0",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
+  }
+}
