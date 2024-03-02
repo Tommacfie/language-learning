@@ -1,3 +1,10 @@
 @tailwind base;
+
+div {
+  @apply text-white;
+}
+body {
+  @apply bg-slate-900;
+}
 @tailwind components;
 @tailwind utilities;
