@@ -4,10 +4,10 @@ export enum WordClassEnum {
   rzeczowniki = 'RZECZOWNIKI',
   czasowniki = 'CZASOWNIKI',
   przymiotniki = 'PRZYMIOTNIKI',
-  przyslowki = 'PRZYSŁÓWKI',
+  przyslowki = 'PRZYSLOWKI',
   zaimek = 'ZAIMEK',
   przyimki = 'PRZYIMKI',
-  spojniki = 'SP\u00D3JNIKI',
+  spojniki = 'SPOJNIKI',
   wykrzykniki = 'WYKRZYKNIKI',
 }
 
@@ -24,10 +24,10 @@ export const EnumWordClass = schemaComposer.createEnumTC({
     rzeczowniki: { value: 'RZECZOWNIKI' },
     czasowniki: { value: 'CZASOWNIKI' },
     przymiotniki: { value: 'PRZYMIOTNIKI' },
-    przyslowki: { value: 'PRZYSŁ0WKI' },
+    przyslowki: { value: 'PRZYSŁÓWKI' },
     zaimek: { value: 'ZAIMEK' },
     przyimki: { value: 'PRZYIMKI' },
-    spojniki: { value: 'SP\u00D3JNIKI' },
+    spojniki: { value: 'SPÓJNIKI' },
     wykrzykniki: { value: 'WYKRZYKNIKI' },
   },
 });

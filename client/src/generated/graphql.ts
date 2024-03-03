@@ -78,9 +78,9 @@ export enum EnumWordWordClass {
   Czasowniki = 'CZASOWNIKI',
   Przyimki = 'PRZYIMKI',
   Przymiotniki = 'PRZYMIOTNIKI',
-  PrzysWki = 'PRZYS__WKI',
+  Przyslowki = 'PRZYSLOWKI',
   Rzeczowniki = 'RZECZOWNIKI',
-  SpJniki = 'SP_JNIKI',
+  Spojniki = 'SPOJNIKI',
   Wykrzykniki = 'WYKRZYKNIKI',
   Zaimek = 'ZAIMEK'
 }
@@ -624,7 +624,7 @@ export type WordEdge = {
 export type GetWordsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetWordsQuery = { __typename?: 'Query', wordMany: Array<{ __typename?: 'Word', english?: string | null, polish?: string | null, englishDescription?: string | null, polishDescription?: string | null }> };
+export type GetWordsQuery = { __typename?: 'Query', wordMany: Array<{ __typename?: 'Word', english?: string | null, polish?: string | null, englishDescription?: string | null, polishDescription?: string | null, tags?: Array<string | null> | null }> };
 
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -646,6 +646,7 @@ export const GetWordsDocument = gql`
     polish
     englishDescription
     polishDescription
+    tags
   }
 }
     `;

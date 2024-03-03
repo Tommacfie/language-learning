@@ -395,7 +395,7 @@
             "deprecationReason": null
           },
           {
-            "name": "PRZYS__WKI",
+            "name": "PRZYSLOWKI",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -407,7 +407,7 @@
             "deprecationReason": null
           },
           {
-            "name": "SP_JNIKI",
+            "name": "SPOJNIKI",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null

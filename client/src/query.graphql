@@ -4,6 +4,7 @@ query GetWords {
     polish
     englishDescription
     polishDescription
+    tags
   }
 }
 query GetUsers {
