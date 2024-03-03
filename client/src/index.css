@@ -9,5 +9,8 @@ body {
 input {
   @apply text-red-950;
 }
+select {
+  @apply text-red-950;
+}
 @tailwind components;
 @tailwind utilities;

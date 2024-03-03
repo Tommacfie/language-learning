@@ -117,7 +117,11 @@ export const CreateWord = () => {
           >
             <option></option>
             {wordClasses.map((wordClass) => {
-              return <option value={wordClass}>{wordClass}</option>;
+              return (
+                <option value={wordClass} key={wordClass}>
+                  {wordClass}
+                </option>
+              );
             })}
           </select>
         </div>
@@ -133,7 +137,11 @@ export const CreateWord = () => {
           >
             <option></option>
             {wordGenders.map((wordGender) => {
-              return <option value={wordGender}>{wordGender}</option>;
+              return (
+                <option value={wordGender} key={wordGender}>
+                  {wordGender}
+                </option>
+              );
             })}
           </select>
         </div>
