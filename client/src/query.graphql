@@ -1,5 +1,19 @@
-query GetWordMany {
+query GetWords {
   wordMany {
     word
+    englishDescription
+    polishDescription
+    tags
+  }
+}
+query GetUsers {
+  userMany {
+    name
+  }
+}
+
+mutation CreateWord($record: CreateOneWordInput!) {
+  wordCreateOne(record: $record) {
+    recordId
   }
 }

@@ -1,13 +1,46 @@
+import { useState } from 'react';
 import './App.css';
-import { useGetWordManyQuery } from './generated/graphql';
+import { useCreateWordMutation } from './generated/graphql';
 
 export const App = () => {
-  const { data } = useGetWordManyQuery();
+  const [wordInput, setWordInput] = useState();
 
-  console.log(data);
+  const [createWordMutation] = useCreateWordMutation();
+
+  const handleSubmit = async () => {
+    await createWordMutation({
+      variables: { record: wordInput },
+    });
+  };
+
   return (
     <div>
       <div>Word Creation</div>
+      <input
+        type='text'
+        name='word'
+        onChange={(event) => {
+          const { name, value } = event.target;
+          setWordInput((prev) => ({ ...prev, [name]: value }));
+        }}
+      />
+      <input
+        type='text'
+        name='englishDescription'
+        onChange={(event) => {
+          const { name, value } = event.target;
+          setWordInput((prev) => ({ ...prev, [name]: value }));
+        }}
+      />
+      <input
+        type='text'
+        name='polishDescription'
+        onChange={(event) => {
+          const { name, value } = event.target;
+          setWordInput((prev) => ({ ...prev, [name]: value }));
+        }}
+      />
+      <button onClick={async () => handleSubmit()}>Submit</button>
     </div>
   );
 };
