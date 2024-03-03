@@ -7,7 +7,8 @@
     "start": "vite --open",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "schema": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.9.5",
@@ -17,7 +18,8 @@
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/cli": "5.0.2",
+    "@graphql-codegen/introspection": "4.0.0",
     "@graphql-codegen/typescript": "^4.0.6",
     "@graphql-codegen/typescript-operations": "^4.2.0",
     "@graphql-codegen/typescript-react-apollo": "^4.3.0",
@@ -31,6 +33,7 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
-    "vite": "^5.1.4"
+    "vite": "^5.1.4",
+    "@graphql-codegen/client-preset": "4.2.4"
   }
 }

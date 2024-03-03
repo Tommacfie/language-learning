@@ -1,11 +1,11 @@
 import './App.css';
 
-function App() {
+export const App = () => {
   return (
     <div>
       <div>Word Creation</div>
     </div>
   );
-}
+};
 
 export default App;

@@ -1,0 +1,5 @@
+query WordMany {
+  wordMany {
+    word
+  }
+}
