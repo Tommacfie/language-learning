@@ -10,7 +10,7 @@ const config: CodegenConfig = {
       plugins: [
         'typescript',
         'typescript-operations',
-        // 'typescript-react-query',
+        'typescript-react-apollo',
       ],
     },
     'src/generated/schema.graphql': {

@@ -1,4 +1,4 @@
-query WordMany {
+query GetWordMany {
   wordMany {
     word
   }
