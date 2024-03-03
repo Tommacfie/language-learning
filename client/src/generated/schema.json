@@ -199,11 +199,11 @@
             "deprecationReason": null
           },
           {
-            "name": "wordClass",
+            "name": "wordGender",
             "description": null,
             "type": {
               "kind": "ENUM",
-              "name": "EnumWordWordClass",
+              "name": "EnumWordWordGender",
               "ofType": null
             },
             "defaultValue": null,
@@ -211,11 +211,11 @@
             "deprecationReason": null
           },
           {
-            "name": "wordGender",
+            "name": "wordType",
             "description": null,
             "type": {
               "kind": "ENUM",
-              "name": "EnumWordWordGender",
+              "name": "EnumWordWordType",
               "ofType": null
             },
             "defaultValue": null,
@@ -276,7 +276,42 @@
       },
       {
         "kind": "ENUM",
-        "name": "EnumWordWordClass",
+        "name": "EnumWordWordGender",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "meski",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "nijaki",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "none",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "zenski",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "EnumWordWordType",
         "description": null,
         "fields": null,
         "inputFields": null,
@@ -326,41 +361,6 @@
           },
           {
             "name": "zaimek",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "EnumWordWordGender",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "meski",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "nijaki",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "none",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "zenski",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -807,11 +807,11 @@
             "deprecationReason": null
           },
           {
-            "name": "wordClass",
+            "name": "wordGender",
             "description": null,
             "type": {
               "kind": "ENUM",
-              "name": "EnumWordWordClass",
+              "name": "EnumWordWordGender",
               "ofType": null
             },
             "defaultValue": null,
@@ -819,11 +819,11 @@
             "deprecationReason": null
           },
           {
-            "name": "wordGender",
+            "name": "wordType",
             "description": null,
             "type": {
               "kind": "ENUM",
-              "name": "EnumWordWordGender",
+              "name": "EnumWordWordType",
               "ofType": null
             },
             "defaultValue": null,
@@ -1373,11 +1373,11 @@
             "deprecationReason": null
           },
           {
-            "name": "wordClass",
+            "name": "wordGender",
             "description": null,
             "type": {
               "kind": "ENUM",
-              "name": "EnumWordWordClass",
+              "name": "EnumWordWordGender",
               "ofType": null
             },
             "defaultValue": null,
@@ -1385,11 +1385,11 @@
             "deprecationReason": null
           },
           {
-            "name": "wordGender",
+            "name": "wordType",
             "description": null,
             "type": {
               "kind": "ENUM",
-              "name": "EnumWordWordGender",
+              "name": "EnumWordWordType",
               "ofType": null
             },
             "defaultValue": null,
@@ -1939,11 +1939,11 @@
             "deprecationReason": null
           },
           {
-            "name": "wordClass",
+            "name": "wordGender",
             "description": null,
             "type": {
               "kind": "ENUM",
-              "name": "EnumWordWordClass",
+              "name": "EnumWordWordGender",
               "ofType": null
             },
             "defaultValue": null,
@@ -1951,11 +1951,11 @@
             "deprecationReason": null
           },
           {
-            "name": "wordGender",
+            "name": "wordType",
             "description": null,
             "type": {
               "kind": "ENUM",
-              "name": "EnumWordWordGender",
+              "name": "EnumWordWordType",
               "ofType": null
             },
             "defaultValue": null,
@@ -3618,11 +3618,11 @@
             "deprecationReason": null
           },
           {
-            "name": "wordClass",
+            "name": "wordGender",
             "description": null,
             "type": {
               "kind": "ENUM",
-              "name": "EnumWordWordClass",
+              "name": "EnumWordWordGender",
               "ofType": null
             },
             "defaultValue": null,
@@ -3630,11 +3630,11 @@
             "deprecationReason": null
           },
           {
-            "name": "wordGender",
+            "name": "wordType",
             "description": null,
             "type": {
               "kind": "ENUM",
-              "name": "EnumWordWordGender",
+              "name": "EnumWordWordType",
               "ofType": null
             },
             "defaultValue": null,
@@ -4080,24 +4080,24 @@
             "deprecationReason": null
           },
           {
-            "name": "wordClass",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "ENUM",
-              "name": "EnumWordWordClass",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "wordGender",
             "description": null,
             "args": [],
             "type": {
               "kind": "ENUM",
               "name": "EnumWordWordGender",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "wordType",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "ENUM",
+              "name": "EnumWordWordType",
               "ofType": null
             },
             "isDeprecated": false,

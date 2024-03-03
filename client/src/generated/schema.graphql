@@ -26,8 +26,8 @@ input CreateOneWordInput {
   polish: String
   polishDescription: String
   tags: [String]
-  wordClass: EnumWordWordClass
   wordGender: EnumWordWordGender
+  wordType: EnumWordWordType
 }
 
 type CreateOneWordPayload {
@@ -43,7 +43,14 @@ type CreateOneWordPayload {
   recordId: MongoID
 }
 
-enum EnumWordWordClass {
+enum EnumWordWordGender {
+  meski
+  nijaki
+  none
+  zenski
+}
+
+enum EnumWordWordType {
   czasowniki
   przyimki
   przymiotniki
@@ -52,13 +59,6 @@ enum EnumWordWordClass {
   spojniki
   wykrzykniki
   zaimek
-}
-
-enum EnumWordWordGender {
-  meski
-  nijaki
-  none
-  zenski
 }
 
 interface ErrorInterface {
@@ -109,8 +109,8 @@ input FilterCountWordInput {
   polish: String
   polishDescription: String
   tags: [String]
-  wordClass: EnumWordWordClass
   wordGender: EnumWordWordGender
+  wordType: EnumWordWordType
 }
 
 """For performance reason this type contains only *indexed* fields."""
@@ -172,8 +172,8 @@ input FilterFindManyWordInput {
   polish: String
   polishDescription: String
   tags: [String]
-  wordClass: EnumWordWordClass
   wordGender: EnumWordWordGender
+  wordType: EnumWordWordType
 }
 
 """For performance reason this type contains only *indexed* fields."""
@@ -235,8 +235,8 @@ input FilterFindOneWordInput {
   polish: String
   polishDescription: String
   tags: [String]
-  wordClass: EnumWordWordClass
   wordGender: EnumWordWordGender
+  wordType: EnumWordWordType
 }
 
 """For performance reason this type contains only *indexed* fields."""
@@ -497,8 +497,8 @@ input UpdateByIdWordInput {
   polish: String
   polishDescription: String
   tags: [String]
-  wordClass: EnumWordWordClass
   wordGender: EnumWordWordGender
+  wordType: EnumWordWordType
 }
 
 type UpdateByIdWordPayload {
@@ -574,8 +574,8 @@ type Word {
   polish: String
   polishDescription: String
   tags: [String]
-  wordClass: EnumWordWordClass
   wordGender: EnumWordWordGender
+  wordType: EnumWordWordType
 }
 
 """A connection to a list of items."""

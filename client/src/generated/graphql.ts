@@ -32,11 +32,18 @@ export type CreateOneWordInput = {
   polish?: InputMaybe<Scalars['String']['input']>;
   polishDescription?: InputMaybe<Scalars['String']['input']>;
   tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  wordClass?: InputMaybe<EnumWordWordClass>;
   wordGender?: InputMaybe<EnumWordWordGender>;
+  wordType?: InputMaybe<EnumWordWordType>;
 };
 
-export enum EnumWordWordClass {
+export enum EnumWordWordGender {
+  meski = 'meski',
+  nijaki = 'nijaki',
+  none = 'none',
+  zenski = 'zenski'
+}
+
+export enum EnumWordWordType {
   czasowniki = 'czasowniki',
   przyimki = 'przyimki',
   przymiotniki = 'przymiotniki',
@@ -45,13 +52,6 @@ export enum EnumWordWordClass {
   spojniki = 'spojniki',
   wykrzykniki = 'wykrzykniki',
   zaimek = 'zaimek'
-}
-
-export enum EnumWordWordGender {
-  meski = 'meski',
-  nijaki = 'nijaki',
-  none = 'none',
-  zenski = 'zenski'
 }
 
 export type FilterCountUserInput = {
@@ -93,8 +93,8 @@ export type FilterCountWordInput = {
   polish?: InputMaybe<Scalars['String']['input']>;
   polishDescription?: InputMaybe<Scalars['String']['input']>;
   tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  wordClass?: InputMaybe<EnumWordWordClass>;
   wordGender?: InputMaybe<EnumWordWordGender>;
+  wordType?: InputMaybe<EnumWordWordType>;
 };
 
 /** For performance reason this type contains only *indexed* fields. */
@@ -152,8 +152,8 @@ export type FilterFindManyWordInput = {
   polish?: InputMaybe<Scalars['String']['input']>;
   polishDescription?: InputMaybe<Scalars['String']['input']>;
   tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  wordClass?: InputMaybe<EnumWordWordClass>;
   wordGender?: InputMaybe<EnumWordWordGender>;
+  wordType?: InputMaybe<EnumWordWordType>;
 };
 
 /** For performance reason this type contains only *indexed* fields. */
@@ -211,8 +211,8 @@ export type FilterFindOneWordInput = {
   polish?: InputMaybe<Scalars['String']['input']>;
   polishDescription?: InputMaybe<Scalars['String']['input']>;
   tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  wordClass?: InputMaybe<EnumWordWordClass>;
   wordGender?: InputMaybe<EnumWordWordGender>;
+  wordType?: InputMaybe<EnumWordWordType>;
 };
 
 /** For performance reason this type contains only *indexed* fields. */
@@ -284,14 +284,14 @@ export type UpdateByIdWordInput = {
   polish?: InputMaybe<Scalars['String']['input']>;
   polishDescription?: InputMaybe<Scalars['String']['input']>;
   tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  wordClass?: InputMaybe<EnumWordWordClass>;
   wordGender?: InputMaybe<EnumWordWordGender>;
+  wordType?: InputMaybe<EnumWordWordType>;
 };
 
 export type GetWordsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetWordsQuery = { wordMany: Array<{ english?: string | null, polish?: string | null, englishDescription?: string | null, polishDescription?: string | null, tags?: Array<string | null> | null }> };
+export type GetWordsQuery = { wordMany: Array<{ english?: string | null, polish?: string | null, englishDescription?: string | null, polishDescription?: string | null, tags?: Array<string | null> | null, wordGender?: EnumWordWordGender | null, wordType?: EnumWordWordType | null }> };
 
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -314,6 +314,8 @@ export const GetWordsDocument = gql`
     englishDescription
     polishDescription
     tags
+    wordGender
+    wordType
   }
 }
     `;

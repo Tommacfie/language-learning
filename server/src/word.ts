@@ -9,7 +9,7 @@ const WordSchema = new mongoose.Schema({
   polish: String,
   englishDescription: String,
   polishDescription: String,
-  wordClass: { type: String, enum: EnumWordClass.getFieldNames() },
+  wordType: { type: String, enum: EnumWordClass.getFieldNames() },
   wordGender: { type: String, enum: EnumWordGender.getFieldNames() },
   cues: [String]!,
   tags: [String!]!,
