@@ -1,7 +1,12 @@
 import { schemaComposer } from 'graphql-compose';
 import { composeWithMongoose } from 'graphql-compose-mongoose';
 import mongoose from 'mongoose';
-import { WordClassEnum, WordGenderEnum } from './enums';
+import {
+  EnumWordClass,
+  EnumWordGender,
+  WordClassEnum,
+  WordGenderEnum,
+} from './enums';
 
 // Mongoose model
 const WordSchema = new mongoose.Schema({
@@ -9,8 +14,8 @@ const WordSchema = new mongoose.Schema({
   polish: String,
   englishDescription: String,
   polishDescription: String,
-  wordClass: Object.values(WordClassEnum),
-  wordGender: Object.values(WordGenderEnum),
+  wordClass: { type: String, enum: Object.values(WordClassEnum) },
+  wordGender: { type: String, enum: Object.values(WordGenderEnum) },
   cues: [String]!,
   tags: [String!]!,
 });
@@ -18,6 +23,11 @@ const WordModel = mongoose.model('Word', WordSchema);
 
 // Generate GraphQL Type
 const WordType = composeWithMongoose(WordModel);
+
+WordType.addFields({
+  wordClass: { type: EnumWordClass.getType() },
+  wordGender: { type: EnumWordGender.getType() },
+});
 
 // Add fields and resolvers to rootQuery
 schemaComposer.Query.addFields({

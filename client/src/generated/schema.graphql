@@ -1,0 +1,618 @@
+""""""
+input CreateOneUserInput {
+  age: Float
+  email: String
+  name: String
+}
+
+type CreateOneUserPayload {
+  """
+  Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  """
+  error: ErrorInterface
+
+  """Created document"""
+  record: User
+
+  """Document ID"""
+  recordId: MongoID
+}
+
+""""""
+input CreateOneWordInput {
+  cues: [String]
+  english: String
+  englishDescription: String
+  polish: String
+  polishDescription: String
+  tags: [String]
+  wordClass: EnumWordWordClass
+  wordGender: EnumWordWordGender
+}
+
+type CreateOneWordPayload {
+  """
+  Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  """
+  error: ErrorInterface
+
+  """Created document"""
+  record: Word
+
+  """Document ID"""
+  recordId: MongoID
+}
+
+enum EnumWordClass {
+  czasowniki
+  przyimki
+  przymiotniki
+  przyslowki
+  rzeczowniki
+  spojniki
+  wykrzykniki
+  zaimek
+}
+
+enum EnumWordGender {
+  meski
+  nijaki
+  none
+  zenski
+}
+
+enum EnumWordWordClass {
+  CZASOWNIKI
+  PRZYIMKI
+  PRZYMIOTNIKI
+  PRZYS__WKI
+  RZECZOWNIKI
+  SP_JNIKI
+  WYKRZYKNIKI
+  ZAIMEK
+}
+
+enum EnumWordWordGender {
+  MESKI
+  NIJAKI
+  NONE
+  ZENSKI
+}
+
+interface ErrorInterface {
+  """Generic error message"""
+  message: String
+}
+
+""""""
+input FilterCountUserInput {
+  AND: [FilterCountUserInput!]
+  OR: [FilterCountUserInput!]
+  _id: MongoID
+
+  """List of *indexed* fields that can be filtered via operators."""
+  _operators: FilterCountUserOperatorsInput
+  age: Float
+  email: String
+  name: String
+}
+
+"""For performance reason this type contains only *indexed* fields."""
+input FilterCountUserOperatorsInput {
+  _id: FilterCountUser_idOperatorsInput
+}
+
+input FilterCountUser_idOperatorsInput {
+  exists: Boolean
+  gt: MongoID
+  gte: MongoID
+  in: [MongoID]
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  nin: [MongoID]
+}
+
+""""""
+input FilterCountWordInput {
+  AND: [FilterCountWordInput!]
+  OR: [FilterCountWordInput!]
+  _id: MongoID
+
+  """List of *indexed* fields that can be filtered via operators."""
+  _operators: FilterCountWordOperatorsInput
+  cues: [String]
+  english: String
+  englishDescription: String
+  polish: String
+  polishDescription: String
+  tags: [String]
+  wordClass: EnumWordWordClass
+  wordGender: EnumWordWordGender
+}
+
+"""For performance reason this type contains only *indexed* fields."""
+input FilterCountWordOperatorsInput {
+  _id: FilterCountWord_idOperatorsInput
+}
+
+input FilterCountWord_idOperatorsInput {
+  exists: Boolean
+  gt: MongoID
+  gte: MongoID
+  in: [MongoID]
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  nin: [MongoID]
+}
+
+""""""
+input FilterFindManyUserInput {
+  AND: [FilterFindManyUserInput!]
+  OR: [FilterFindManyUserInput!]
+  _id: MongoID
+
+  """List of *indexed* fields that can be filtered via operators."""
+  _operators: FilterFindManyUserOperatorsInput
+  age: Float
+  email: String
+  name: String
+}
+
+"""For performance reason this type contains only *indexed* fields."""
+input FilterFindManyUserOperatorsInput {
+  _id: FilterFindManyUser_idOperatorsInput
+}
+
+input FilterFindManyUser_idOperatorsInput {
+  exists: Boolean
+  gt: MongoID
+  gte: MongoID
+  in: [MongoID]
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  nin: [MongoID]
+}
+
+""""""
+input FilterFindManyWordInput {
+  AND: [FilterFindManyWordInput!]
+  OR: [FilterFindManyWordInput!]
+  _id: MongoID
+
+  """List of *indexed* fields that can be filtered via operators."""
+  _operators: FilterFindManyWordOperatorsInput
+  cues: [String]
+  english: String
+  englishDescription: String
+  polish: String
+  polishDescription: String
+  tags: [String]
+  wordClass: EnumWordWordClass
+  wordGender: EnumWordWordGender
+}
+
+"""For performance reason this type contains only *indexed* fields."""
+input FilterFindManyWordOperatorsInput {
+  _id: FilterFindManyWord_idOperatorsInput
+}
+
+input FilterFindManyWord_idOperatorsInput {
+  exists: Boolean
+  gt: MongoID
+  gte: MongoID
+  in: [MongoID]
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  nin: [MongoID]
+}
+
+""""""
+input FilterFindOneUserInput {
+  AND: [FilterFindOneUserInput!]
+  OR: [FilterFindOneUserInput!]
+  _id: MongoID
+
+  """List of *indexed* fields that can be filtered via operators."""
+  _operators: FilterFindOneUserOperatorsInput
+  age: Float
+  email: String
+  name: String
+}
+
+"""For performance reason this type contains only *indexed* fields."""
+input FilterFindOneUserOperatorsInput {
+  _id: FilterFindOneUser_idOperatorsInput
+}
+
+input FilterFindOneUser_idOperatorsInput {
+  exists: Boolean
+  gt: MongoID
+  gte: MongoID
+  in: [MongoID]
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  nin: [MongoID]
+}
+
+""""""
+input FilterFindOneWordInput {
+  AND: [FilterFindOneWordInput!]
+  OR: [FilterFindOneWordInput!]
+  _id: MongoID
+
+  """List of *indexed* fields that can be filtered via operators."""
+  _operators: FilterFindOneWordOperatorsInput
+  cues: [String]
+  english: String
+  englishDescription: String
+  polish: String
+  polishDescription: String
+  tags: [String]
+  wordClass: EnumWordWordClass
+  wordGender: EnumWordWordGender
+}
+
+"""For performance reason this type contains only *indexed* fields."""
+input FilterFindOneWordOperatorsInput {
+  _id: FilterFindOneWord_idOperatorsInput
+}
+
+input FilterFindOneWord_idOperatorsInput {
+  exists: Boolean
+  gt: MongoID
+  gte: MongoID
+  in: [MongoID]
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  nin: [MongoID]
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type MongoError implements ErrorInterface {
+  """MongoDB error code"""
+  code: Int
+
+  """MongoDB error message"""
+  message: String
+}
+
+"""
+The `ID` scalar type represents a unique MongoDB identifier in collection. MongoDB by default use 12-byte ObjectId value (https://docs.mongodb.com/manual/reference/bson-types/#objectid). But MongoDB also may accepts string or integer as correct values for _id field.
+"""
+scalar MongoID
+
+type Mutation {
+  """
+  Create one document with mongoose defaults, setters, hooks and validation
+  """
+  userCreateOne(record: CreateOneUserInput!): CreateOneUserPayload
+
+  """
+  Remove one document: 1) Retrieve one document and remove with hooks via findByIdAndRemove. 2) Return removed document.
+  """
+  userRemoveById(_id: MongoID!): RemoveByIdUserPayload
+
+  """
+  Update one document: 1) Retrieve one document by findById. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  """
+  userUpdateById(_id: MongoID!, record: UpdateByIdUserInput!): UpdateByIdUserPayload
+
+  """
+  Create one document with mongoose defaults, setters, hooks and validation
+  """
+  wordCreateOne(record: CreateOneWordInput!): CreateOneWordPayload
+
+  """
+  Remove one document: 1) Retrieve one document and remove with hooks via findByIdAndRemove. 2) Return removed document.
+  """
+  wordRemoveById(_id: MongoID!): RemoveByIdWordPayload
+
+  """
+  Update one document: 1) Retrieve one document by findById. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  """
+  wordUpdateById(_id: MongoID!, record: UpdateByIdWordInput!): UpdateByIdWordPayload
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+type Query {
+  userByIds(_ids: [MongoID!]!, limit: Int = 100, sort: SortFindByIdsUserInput): [User!]!
+  userConnection(
+    """Forward pagination argument for returning at most first edges"""
+    after: String
+
+    """Backward pagination argument for returning at most last edges"""
+    before: String
+
+    """Filter by fields"""
+    filter: FilterFindManyUserInput
+
+    """Forward pagination argument for returning at most first edges"""
+    first: Int
+
+    """Backward pagination argument for returning at most last edges"""
+    last: Int
+
+    """Sort argument for data ordering"""
+    sort: SortConnectionUserEnum = _ID_DESC
+  ): UserConnection
+  userCount(
+    """Filter by fields"""
+    filter: FilterCountUserInput
+  ): Int
+  userMany(
+    """Filter by fields"""
+    filter: FilterFindManyUserInput
+    limit: Int = 100
+    skip: Int
+    sort: SortFindManyUserInput
+  ): [User!]!
+  userOne(
+    """Filter by fields"""
+    filter: FilterFindOneUserInput
+    skip: Int
+    sort: SortFindOneUserInput
+  ): User
+  word(_id: MongoID!): Word
+  wordConnection(
+    """Forward pagination argument for returning at most first edges"""
+    after: String
+
+    """Backward pagination argument for returning at most last edges"""
+    before: String
+
+    """Filter by fields"""
+    filter: FilterFindManyWordInput
+
+    """Forward pagination argument for returning at most first edges"""
+    first: Int
+
+    """Backward pagination argument for returning at most last edges"""
+    last: Int
+
+    """Sort argument for data ordering"""
+    sort: SortConnectionWordEnum = _ID_DESC
+  ): WordConnection
+  wordCount(
+    """Filter by fields"""
+    filter: FilterCountWordInput
+  ): Int
+  wordMany(
+    """Filter by fields"""
+    filter: FilterFindManyWordInput
+    limit: Int = 100
+    skip: Int
+    sort: SortFindManyWordInput
+  ): [Word!]!
+  wordOne(
+    """Filter by fields"""
+    filter: FilterFindOneWordInput
+    skip: Int
+    sort: SortFindOneWordInput
+  ): Word
+  words(_ids: [MongoID!]!, limit: Int = 100, sort: SortFindByIdsWordInput): [Word!]!
+}
+
+type RemoveByIdUserPayload {
+  """
+  Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  """
+  error: ErrorInterface
+
+  """Removed document"""
+  record: User
+
+  """Document ID"""
+  recordId: MongoID
+}
+
+type RemoveByIdWordPayload {
+  """
+  Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  """
+  error: ErrorInterface
+
+  """Removed document"""
+  record: Word
+
+  """Document ID"""
+  recordId: MongoID
+}
+
+type RuntimeError implements ErrorInterface {
+  """Runtime error message"""
+  message: String
+}
+
+enum SortConnectionUserEnum {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortConnectionWordEnum {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindByIdsUserInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindByIdsWordInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyUserInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyWordInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneUserInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneWordInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+""""""
+input UpdateByIdUserInput {
+  age: Float
+  email: String
+  name: String
+}
+
+type UpdateByIdUserPayload {
+  """
+  Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  """
+  error: ErrorInterface
+
+  """Updated document"""
+  record: User
+
+  """Document ID"""
+  recordId: MongoID
+}
+
+""""""
+input UpdateByIdWordInput {
+  cues: [String]
+  english: String
+  englishDescription: String
+  polish: String
+  polishDescription: String
+  tags: [String]
+  wordClass: EnumWordWordClass
+  wordGender: EnumWordWordGender
+}
+
+type UpdateByIdWordPayload {
+  """
+  Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  """
+  error: ErrorInterface
+
+  """Updated document"""
+  record: Word
+
+  """Document ID"""
+  recordId: MongoID
+}
+
+type User {
+  _id: MongoID!
+  age: Float
+  email: String
+  name: String
+}
+
+"""A connection to a list of items."""
+type UserConnection {
+  """Total object count."""
+  count: Int!
+
+  """Information to aid in pagination."""
+  edges: [UserEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+"""An edge in a connection."""
+type UserEdge {
+  """A cursor for use in pagination"""
+  cursor: String!
+
+  """The item at the end of the edge"""
+  node: User!
+}
+
+type ValidationError implements ErrorInterface {
+  """List of validator errors"""
+  errors: [ValidatorError!]
+
+  """Combined error message from all validators"""
+  message: String
+}
+
+type ValidatorError {
+  """
+  Input record idx in array which occurs the validation error. This `idx` is useful for createMany operation. For singular operations it always be 0. For *Many operations `idx` represents record index in array received from user.
+  """
+  idx: Int!
+
+  """Validation error message"""
+  message: String
+
+  """Source of the validation error from the model path"""
+  path: String
+
+  """Field value which occurs the validation error"""
+  value: JSON
+}
+
+type Word {
+  _id: MongoID!
+  cues: [String]
+  english: String
+  englishDescription: String
+  polish: String
+  polishDescription: String
+  tags: [String]
+  wordClass: EnumWordClass
+  wordGender: EnumWordGender
+}
+
+"""A connection to a list of items."""
+type WordConnection {
+  """Total object count."""
+  count: Int!
+
+  """Information to aid in pagination."""
+  edges: [WordEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+"""An edge in a connection."""
+type WordEdge {
+  """A cursor for use in pagination"""
+  cursor: String!
+
+  """The item at the end of the edge"""
+  node: Word!
+}
