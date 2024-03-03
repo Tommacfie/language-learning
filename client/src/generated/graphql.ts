@@ -25,16 +25,6 @@ export type CreateOneUserInput = {
   name?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type CreateOneUserPayload = {
-  __typename?: 'CreateOneUserPayload';
-  /** Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response. */
-  error?: Maybe<ErrorInterface>;
-  /** Created document */
-  record?: Maybe<User>;
-  /** Document ID */
-  recordId?: Maybe<Scalars['MongoID']['output']>;
-};
-
 export type CreateOneWordInput = {
   cues?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   english?: InputMaybe<Scalars['String']['input']>;
@@ -46,56 +36,23 @@ export type CreateOneWordInput = {
   wordGender?: InputMaybe<EnumWordWordGender>;
 };
 
-export type CreateOneWordPayload = {
-  __typename?: 'CreateOneWordPayload';
-  /** Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response. */
-  error?: Maybe<ErrorInterface>;
-  /** Created document */
-  record?: Maybe<Word>;
-  /** Document ID */
-  recordId?: Maybe<Scalars['MongoID']['output']>;
-};
-
-export enum EnumWordClass {
-  Czasowniki = 'czasowniki',
-  Przyimki = 'przyimki',
-  Przymiotniki = 'przymiotniki',
-  Przyslowki = 'przyslowki',
-  Rzeczowniki = 'rzeczowniki',
-  Spojniki = 'spojniki',
-  Wykrzykniki = 'wykrzykniki',
-  Zaimek = 'zaimek'
-}
-
-export enum EnumWordGender {
-  Meski = 'meski',
-  Nijaki = 'nijaki',
-  None = 'none',
-  Zenski = 'zenski'
-}
-
 export enum EnumWordWordClass {
-  Czasowniki = 'CZASOWNIKI',
-  Przyimki = 'PRZYIMKI',
-  Przymiotniki = 'PRZYMIOTNIKI',
-  Przyslowki = 'PRZYSLOWKI',
-  Rzeczowniki = 'RZECZOWNIKI',
-  Spojniki = 'SPOJNIKI',
-  Wykrzykniki = 'WYKRZYKNIKI',
-  Zaimek = 'ZAIMEK'
+  czasowniki = 'czasowniki',
+  przyimki = 'przyimki',
+  przymiotniki = 'przymiotniki',
+  przyslowki = 'przyslowki',
+  rzeczowniki = 'rzeczowniki',
+  spojniki = 'spojniki',
+  wykrzykniki = 'wykrzykniki',
+  zaimek = 'zaimek'
 }
 
 export enum EnumWordWordGender {
-  Meski = 'MESKI',
-  Nijaki = 'NIJAKI',
-  None = 'NONE',
-  Zenski = 'ZENSKI'
+  meski = 'meski',
+  nijaki = 'nijaki',
+  none = 'none',
+  zenski = 'zenski'
 }
-
-export type ErrorInterface = {
-  /** Generic error message */
-  message?: Maybe<Scalars['String']['output']>;
-};
 
 export type FilterCountUserInput = {
   AND?: InputMaybe<Array<FilterCountUserInput>>;
@@ -274,249 +231,50 @@ export type FilterFindOneWord_IdOperatorsInput = {
   nin?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
 };
 
-export type MongoError = ErrorInterface & {
-  __typename?: 'MongoError';
-  /** MongoDB error code */
-  code?: Maybe<Scalars['Int']['output']>;
-  /** MongoDB error message */
-  message?: Maybe<Scalars['String']['output']>;
-};
-
-export type Mutation = {
-  __typename?: 'Mutation';
-  /** Create one document with mongoose defaults, setters, hooks and validation */
-  userCreateOne?: Maybe<CreateOneUserPayload>;
-  /** Remove one document: 1) Retrieve one document and remove with hooks via findByIdAndRemove. 2) Return removed document. */
-  userRemoveById?: Maybe<RemoveByIdUserPayload>;
-  /** Update one document: 1) Retrieve one document by findById. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it. */
-  userUpdateById?: Maybe<UpdateByIdUserPayload>;
-  /** Create one document with mongoose defaults, setters, hooks and validation */
-  wordCreateOne?: Maybe<CreateOneWordPayload>;
-  /** Remove one document: 1) Retrieve one document and remove with hooks via findByIdAndRemove. 2) Return removed document. */
-  wordRemoveById?: Maybe<RemoveByIdWordPayload>;
-  /** Update one document: 1) Retrieve one document by findById. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it. */
-  wordUpdateById?: Maybe<UpdateByIdWordPayload>;
-};
-
-
-export type MutationUserCreateOneArgs = {
-  record: CreateOneUserInput;
-};
-
-
-export type MutationUserRemoveByIdArgs = {
-  _id: Scalars['MongoID']['input'];
-};
-
-
-export type MutationUserUpdateByIdArgs = {
-  _id: Scalars['MongoID']['input'];
-  record: UpdateByIdUserInput;
-};
-
-
-export type MutationWordCreateOneArgs = {
-  record: CreateOneWordInput;
-};
-
-
-export type MutationWordRemoveByIdArgs = {
-  _id: Scalars['MongoID']['input'];
-};
-
-
-export type MutationWordUpdateByIdArgs = {
-  _id: Scalars['MongoID']['input'];
-  record: UpdateByIdWordInput;
-};
-
-/** Information about pagination in a connection. */
-export type PageInfo = {
-  __typename?: 'PageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-export type Query = {
-  __typename?: 'Query';
-  userByIds: Array<User>;
-  userConnection?: Maybe<UserConnection>;
-  userCount?: Maybe<Scalars['Int']['output']>;
-  userMany: Array<User>;
-  userOne?: Maybe<User>;
-  word?: Maybe<Word>;
-  wordConnection?: Maybe<WordConnection>;
-  wordCount?: Maybe<Scalars['Int']['output']>;
-  wordMany: Array<Word>;
-  wordOne?: Maybe<Word>;
-  words: Array<Word>;
-};
-
-
-export type QueryUserByIdsArgs = {
-  _ids: Array<Scalars['MongoID']['input']>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<SortFindByIdsUserInput>;
-};
-
-
-export type QueryUserConnectionArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<FilterFindManyUserInput>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<SortConnectionUserEnum>;
-};
-
-
-export type QueryUserCountArgs = {
-  filter?: InputMaybe<FilterCountUserInput>;
-};
-
-
-export type QueryUserManyArgs = {
-  filter?: InputMaybe<FilterFindManyUserInput>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<SortFindManyUserInput>;
-};
-
-
-export type QueryUserOneArgs = {
-  filter?: InputMaybe<FilterFindOneUserInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<SortFindOneUserInput>;
-};
-
-
-export type QueryWordArgs = {
-  _id: Scalars['MongoID']['input'];
-};
-
-
-export type QueryWordConnectionArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<FilterFindManyWordInput>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<SortConnectionWordEnum>;
-};
-
-
-export type QueryWordCountArgs = {
-  filter?: InputMaybe<FilterCountWordInput>;
-};
-
-
-export type QueryWordManyArgs = {
-  filter?: InputMaybe<FilterFindManyWordInput>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<SortFindManyWordInput>;
-};
-
-
-export type QueryWordOneArgs = {
-  filter?: InputMaybe<FilterFindOneWordInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<SortFindOneWordInput>;
-};
-
-
-export type QueryWordsArgs = {
-  _ids: Array<Scalars['MongoID']['input']>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<SortFindByIdsWordInput>;
-};
-
-export type RemoveByIdUserPayload = {
-  __typename?: 'RemoveByIdUserPayload';
-  /** Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response. */
-  error?: Maybe<ErrorInterface>;
-  /** Removed document */
-  record?: Maybe<User>;
-  /** Document ID */
-  recordId?: Maybe<Scalars['MongoID']['output']>;
-};
-
-export type RemoveByIdWordPayload = {
-  __typename?: 'RemoveByIdWordPayload';
-  /** Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response. */
-  error?: Maybe<ErrorInterface>;
-  /** Removed document */
-  record?: Maybe<Word>;
-  /** Document ID */
-  recordId?: Maybe<Scalars['MongoID']['output']>;
-};
-
-export type RuntimeError = ErrorInterface & {
-  __typename?: 'RuntimeError';
-  /** Runtime error message */
-  message?: Maybe<Scalars['String']['output']>;
-};
-
 export enum SortConnectionUserEnum {
-  IdAsc = '_ID_ASC',
-  IdDesc = '_ID_DESC'
+  _ID_ASC = '_ID_ASC',
+  _ID_DESC = '_ID_DESC'
 }
 
 export enum SortConnectionWordEnum {
-  IdAsc = '_ID_ASC',
-  IdDesc = '_ID_DESC'
+  _ID_ASC = '_ID_ASC',
+  _ID_DESC = '_ID_DESC'
 }
 
 export enum SortFindByIdsUserInput {
-  IdAsc = '_ID_ASC',
-  IdDesc = '_ID_DESC'
+  _ID_ASC = '_ID_ASC',
+  _ID_DESC = '_ID_DESC'
 }
 
 export enum SortFindByIdsWordInput {
-  IdAsc = '_ID_ASC',
-  IdDesc = '_ID_DESC'
+  _ID_ASC = '_ID_ASC',
+  _ID_DESC = '_ID_DESC'
 }
 
 export enum SortFindManyUserInput {
-  IdAsc = '_ID_ASC',
-  IdDesc = '_ID_DESC'
+  _ID_ASC = '_ID_ASC',
+  _ID_DESC = '_ID_DESC'
 }
 
 export enum SortFindManyWordInput {
-  IdAsc = '_ID_ASC',
-  IdDesc = '_ID_DESC'
+  _ID_ASC = '_ID_ASC',
+  _ID_DESC = '_ID_DESC'
 }
 
 export enum SortFindOneUserInput {
-  IdAsc = '_ID_ASC',
-  IdDesc = '_ID_DESC'
+  _ID_ASC = '_ID_ASC',
+  _ID_DESC = '_ID_DESC'
 }
 
 export enum SortFindOneWordInput {
-  IdAsc = '_ID_ASC',
-  IdDesc = '_ID_DESC'
+  _ID_ASC = '_ID_ASC',
+  _ID_DESC = '_ID_DESC'
 }
 
 export type UpdateByIdUserInput = {
   age?: InputMaybe<Scalars['Float']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type UpdateByIdUserPayload = {
-  __typename?: 'UpdateByIdUserPayload';
-  /** Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response. */
-  error?: Maybe<ErrorInterface>;
-  /** Updated document */
-  record?: Maybe<User>;
-  /** Document ID */
-  recordId?: Maybe<Scalars['MongoID']['output']>;
 };
 
 export type UpdateByIdWordInput = {
@@ -530,113 +288,22 @@ export type UpdateByIdWordInput = {
   wordGender?: InputMaybe<EnumWordWordGender>;
 };
 
-export type UpdateByIdWordPayload = {
-  __typename?: 'UpdateByIdWordPayload';
-  /** Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response. */
-  error?: Maybe<ErrorInterface>;
-  /** Updated document */
-  record?: Maybe<Word>;
-  /** Document ID */
-  recordId?: Maybe<Scalars['MongoID']['output']>;
-};
-
-export type User = {
-  __typename?: 'User';
-  _id: Scalars['MongoID']['output'];
-  age?: Maybe<Scalars['Float']['output']>;
-  email?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-/** A connection to a list of items. */
-export type UserConnection = {
-  __typename?: 'UserConnection';
-  /** Total object count. */
-  count: Scalars['Int']['output'];
-  /** Information to aid in pagination. */
-  edges: Array<UserEdge>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-};
-
-/** An edge in a connection. */
-export type UserEdge = {
-  __typename?: 'UserEdge';
-  /** A cursor for use in pagination */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge */
-  node: User;
-};
-
-export type ValidationError = ErrorInterface & {
-  __typename?: 'ValidationError';
-  /** List of validator errors */
-  errors?: Maybe<Array<ValidatorError>>;
-  /** Combined error message from all validators */
-  message?: Maybe<Scalars['String']['output']>;
-};
-
-export type ValidatorError = {
-  __typename?: 'ValidatorError';
-  /** Input record idx in array which occurs the validation error. This `idx` is useful for createMany operation. For singular operations it always be 0. For *Many operations `idx` represents record index in array received from user. */
-  idx: Scalars['Int']['output'];
-  /** Validation error message */
-  message?: Maybe<Scalars['String']['output']>;
-  /** Source of the validation error from the model path */
-  path?: Maybe<Scalars['String']['output']>;
-  /** Field value which occurs the validation error */
-  value?: Maybe<Scalars['JSON']['output']>;
-};
-
-export type Word = {
-  __typename?: 'Word';
-  _id: Scalars['MongoID']['output'];
-  cues?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  english?: Maybe<Scalars['String']['output']>;
-  englishDescription?: Maybe<Scalars['String']['output']>;
-  polish?: Maybe<Scalars['String']['output']>;
-  polishDescription?: Maybe<Scalars['String']['output']>;
-  tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  wordClass?: Maybe<EnumWordClass>;
-  wordGender?: Maybe<EnumWordGender>;
-};
-
-/** A connection to a list of items. */
-export type WordConnection = {
-  __typename?: 'WordConnection';
-  /** Total object count. */
-  count: Scalars['Int']['output'];
-  /** Information to aid in pagination. */
-  edges: Array<WordEdge>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-};
-
-/** An edge in a connection. */
-export type WordEdge = {
-  __typename?: 'WordEdge';
-  /** A cursor for use in pagination */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge */
-  node: Word;
-};
-
 export type GetWordsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetWordsQuery = { __typename?: 'Query', wordMany: Array<{ __typename?: 'Word', english?: string | null, polish?: string | null, englishDescription?: string | null, polishDescription?: string | null, tags?: Array<string | null> | null }> };
+export type GetWordsQuery = { wordMany: Array<{ english?: string | null, polish?: string | null, englishDescription?: string | null, polishDescription?: string | null, tags?: Array<string | null> | null }> };
 
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUsersQuery = { __typename?: 'Query', userMany: Array<{ __typename?: 'User', name?: string | null }> };
+export type GetUsersQuery = { userMany: Array<{ name?: string | null }> };
 
 export type CreateWordMutationVariables = Exact<{
   record: CreateOneWordInput;
 }>;
 
 
-export type CreateWordMutation = { __typename?: 'Mutation', wordCreateOne?: { __typename?: 'CreateOneWordPayload', recordId?: any | null } | null };
+export type CreateWordMutation = { wordCreateOne?: { recordId?: any | null } | null };
 
 
 export const GetWordsDocument = gql`

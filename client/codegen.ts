@@ -4,6 +4,15 @@ const config: CodegenConfig = {
   overwrite: true,
   schema: 'http://localhost:4000/graphql',
   documents: ['!generated/**/*'],
+  config: {
+    namingConvention: {
+      enumValues: 'keep',
+    },
+    skipTypename: true,
+    inlineFragmentTypes: 'combine',
+    preResolveTypes: true,
+    onlyOperationTypes: true,
+  },
   generates: {
     'src/generated/graphql.ts': {
       documents: ['src/**/*.graphql'],

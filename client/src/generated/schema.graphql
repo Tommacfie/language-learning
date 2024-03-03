@@ -43,7 +43,7 @@ type CreateOneWordPayload {
   recordId: MongoID
 }
 
-enum EnumWordClass {
+enum EnumWordWordClass {
   czasowniki
   przyimki
   przymiotniki
@@ -54,29 +54,11 @@ enum EnumWordClass {
   zaimek
 }
 
-enum EnumWordGender {
+enum EnumWordWordGender {
   meski
   nijaki
   none
   zenski
-}
-
-enum EnumWordWordClass {
-  CZASOWNIKI
-  PRZYIMKI
-  PRZYMIOTNIKI
-  PRZYSLOWKI
-  RZECZOWNIKI
-  SPOJNIKI
-  WYKRZYKNIKI
-  ZAIMEK
-}
-
-enum EnumWordWordGender {
-  MESKI
-  NIJAKI
-  NONE
-  ZENSKI
 }
 
 interface ErrorInterface {
@@ -592,8 +574,8 @@ type Word {
   polish: String
   polishDescription: String
   tags: [String]
-  wordClass: EnumWordClass
-  wordGender: EnumWordGender
+  wordClass: EnumWordWordClass
+  wordGender: EnumWordWordGender
 }
 
 """A connection to a list of items."""

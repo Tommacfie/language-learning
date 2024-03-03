@@ -276,7 +276,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "EnumWordClass",
+        "name": "EnumWordWordClass",
         "description": null,
         "fields": null,
         "inputFields": null,
@@ -335,7 +335,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "EnumWordGender",
+        "name": "EnumWordWordGender",
         "description": null,
         "fields": null,
         "inputFields": null,
@@ -361,100 +361,6 @@
           },
           {
             "name": "zenski",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "EnumWordWordClass",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "CZASOWNIKI",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "PRZYIMKI",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "PRZYMIOTNIKI",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "PRZYSLOWKI",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "RZECZOWNIKI",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "SPOJNIKI",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "WYKRZYKNIKI",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ZAIMEK",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "EnumWordWordGender",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "MESKI",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "NIJAKI",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "NONE",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ZENSKI",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -4179,7 +4085,7 @@
             "args": [],
             "type": {
               "kind": "ENUM",
-              "name": "EnumWordClass",
+              "name": "EnumWordWordClass",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4191,7 +4097,7 @@
             "args": [],
             "type": {
               "kind": "ENUM",
-              "name": "EnumWordGender",
+              "name": "EnumWordWordGender",
               "ofType": null
             },
             "isDeprecated": false,

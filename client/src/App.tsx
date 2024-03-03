@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import { useCreateWordMutation } from './generated/graphql';
+import { EnumWordWordClass, useCreateWordMutation } from './generated/graphql';
 
 type WordInputType = {
   english?: string;
@@ -8,6 +8,7 @@ type WordInputType = {
   englishDescription?: string;
   polishDescription?: string;
   tags?: string;
+  wordClass?: EnumWordWordClass;
 };
 
 export const App = () => {
@@ -96,6 +97,17 @@ export const App = () => {
               setWordInput((prev) => ({ ...prev, [name]: value }));
             }}
           />
+        </div>
+        <div>
+          <div>Tags</div>
+          <select
+            name='wordClassEnum'
+            value={wordInput?.tags}
+            onChange={(event) => {
+              const { name, value } = event.target;
+              setWordInput((prev) => ({ ...prev, [name]: value }));
+            }}
+          ></select>
         </div>
       </div>
       <button onClick={async () => handleSubmit()}>Submit</button>
