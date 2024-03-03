@@ -1,6 +1,7 @@
 query GetWords {
   wordMany {
-    word
+    english
+    polish
     englishDescription
     polishDescription
     tags

@@ -5,7 +5,8 @@ import { WordClassEnum, WordGenderEnum } from './enums';
 
 // Mongoose model
 const WordSchema = new mongoose.Schema({
-  word: String,
+  english: String,
+  polish: String,
   englishDescription: String,
   polishDescription: String,
   wordClass: Object.values(WordClassEnum),
@@ -20,8 +21,8 @@ const WordType = composeWithMongoose(WordModel);
 
 // Add fields and resolvers to rootQuery
 schemaComposer.Query.addFields({
-  wordById: WordType.getResolver('findById'),
-  wordByIds: WordType.getResolver('findByIds'),
+  word: WordType.getResolver('findById'),
+  words: WordType.getResolver('findByIds'),
   wordOne: WordType.getResolver('findOne'),
   wordMany: WordType.getResolver('findMany'),
   wordCount: WordType.getResolver('count'),
