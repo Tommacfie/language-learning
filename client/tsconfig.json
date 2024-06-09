@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es6",
     "lib": ["DOM", "DOM.Iterable", "es2021"],
-    "types": ["vite/client", "vitest/globals"],
+    "types": ["vite/client"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

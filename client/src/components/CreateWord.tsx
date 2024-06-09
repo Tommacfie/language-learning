@@ -26,7 +26,11 @@ export const CreateWord = () => {
       tagsArrayToSubmit = parseTagsString(wordInput?.tags);
     }
 
-    const recordToSubmit = { ...wordInput, tags: tagsArrayToSubmit };
+    const recordToSubmit = {
+      ...wordInput,
+      tags: tagsArrayToSubmit,
+      details: { wordType: EnumWordWordType.czasowniki },
+    };
 
     await createWordMutation({
       variables: { record: recordToSubmit },

@@ -3,8 +3,10 @@ import { composeWithMongoose } from 'graphql-compose-mongoose';
 import mongoose from 'mongoose';
 import { EnumWordClass, EnumWordGender } from './enums';
 
+const { Schema, model } = mongoose;
+
 // Mongoose model
-const WordSchema = new mongoose.Schema({
+const WordSchema = new Schema({
   english: String,
   polish: String,
   englishDescription: String,
@@ -14,7 +16,36 @@ const WordSchema = new mongoose.Schema({
   cues: [String]!,
   tags: [String!]!,
 });
-const WordModel = mongoose.model('Word', WordSchema);
+const WordModel = model('Word', WordSchema);
+
+// // Subschema for nouns
+// const nounSchema = new Schema({
+//   pluralForm: { type: String, required: false },
+// });
+
+// // // Subschema for verbs
+// const verbSchema = new Schema({
+//   conjugation: { type: Map, of: String }, // Example: storing different tenses
+// });
+
+// // // Subschema for adjectives
+// const adjectiveSchema = new Schema({
+//   comparativeForm: { type: String, required: false },
+//   superlativeForm: { type: String, required: false },
+// });
+
+WordSchema.add({
+  wordType: { type: String, enum: EnumWordClass.getFieldNames() },
+  details: {
+    type: Schema.Types.Mixed,
+    required: true,
+  },
+});
+
+WordSchema.pre('save', () => {
+  const word = this;
+  console.log(word);
+});
 
 // Generate GraphQL Type
 const WordType = composeWithMongoose(WordModel);
