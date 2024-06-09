@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "nodemon --exec ts-node index.ts",
-    "docker:compose": "docker compose down && docker compose down -v && docker compose up"
+    "docker:start": "docker compose stop && docker compose up",
+    "docker:compose": "docker compose down &&docker compose down -v &&  docker compose up"
   },
   "author": "Tom Macfie",
   "license": "ISC",
