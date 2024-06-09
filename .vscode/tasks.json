@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "docker:compose",
+      "path": "server",
+      "problemMatcher": [],
+      "label": "Docker Compose",
+      "detail": "docker compose down && docker compose down -v && docker compose up",
+      "presentation": {
+        "echo": true,
+        "reveal": "never",
+        "revealProblems": "onProblem",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": false
+      }
+    }
+  ]
+}

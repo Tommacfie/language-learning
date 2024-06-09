@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  backend:
+    build: .
+    ports:
+      - '4000:4000'
+    depends_on:
+      - mongo
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/polish-app-db
+
+  mongo:
+    image: mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/polish-app/db
+
+volumes:
+  mongo_data:
