@@ -20,6 +20,16 @@ query GetDecks {
     name
   }
 }
+query GetFlashCards {
+  flashCardMany {
+    _id
+    front
+    back
+    deck
+    cues
+    tags
+  }
+}
 
 mutation CreateWord($record: CreateOneWordInput!) {
   wordCreateOne(record: $record) {

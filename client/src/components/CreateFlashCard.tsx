@@ -8,16 +8,16 @@ import {
 type FlashCardInputType = {
   front: string;
   back: string;
-  deck: string;
-  clues: string[];
+  deck?: string;
+  cues: string[];
   tags: string;
 };
 
 const defaultValues = {
   front: "",
   back: "",
-  deck: "",
-  clues: [],
+  deck: undefined,
+  cues: [],
   tags: "",
 };
 

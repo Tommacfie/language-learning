@@ -597,6 +597,11 @@ export type GetDecksQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetDecksQuery = { deckMany: Array<{ _id: any, name?: string | null }> };
 
+export type GetFlashCardsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetFlashCardsQuery = { flashCardMany: Array<{ _id: any, front?: string | null, back?: string | null, deck?: any | null, cues?: Array<string | null> | null, tags?: Array<string | null> | null }> };
+
 export type CreateWordMutationVariables = Exact<{
   record: CreateOneWordInput;
 }>;
@@ -743,6 +748,50 @@ export type GetDecksQueryHookResult = ReturnType<typeof useGetDecksQuery>;
 export type GetDecksLazyQueryHookResult = ReturnType<typeof useGetDecksLazyQuery>;
 export type GetDecksSuspenseQueryHookResult = ReturnType<typeof useGetDecksSuspenseQuery>;
 export type GetDecksQueryResult = Apollo.QueryResult<GetDecksQuery, GetDecksQueryVariables>;
+export const GetFlashCardsDocument = gql`
+    query GetFlashCards {
+  flashCardMany {
+    _id
+    front
+    back
+    deck
+    cues
+    tags
+  }
+}
+    `;
+
+/**
+ * __useGetFlashCardsQuery__
+ *
+ * To run a query within a React component, call `useGetFlashCardsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetFlashCardsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetFlashCardsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetFlashCardsQuery(baseOptions?: Apollo.QueryHookOptions<GetFlashCardsQuery, GetFlashCardsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetFlashCardsQuery, GetFlashCardsQueryVariables>(GetFlashCardsDocument, options);
+      }
+export function useGetFlashCardsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetFlashCardsQuery, GetFlashCardsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetFlashCardsQuery, GetFlashCardsQueryVariables>(GetFlashCardsDocument, options);
+        }
+export function useGetFlashCardsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetFlashCardsQuery, GetFlashCardsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetFlashCardsQuery, GetFlashCardsQueryVariables>(GetFlashCardsDocument, options);
+        }
+export type GetFlashCardsQueryHookResult = ReturnType<typeof useGetFlashCardsQuery>;
+export type GetFlashCardsLazyQueryHookResult = ReturnType<typeof useGetFlashCardsLazyQuery>;
+export type GetFlashCardsSuspenseQueryHookResult = ReturnType<typeof useGetFlashCardsSuspenseQuery>;
+export type GetFlashCardsQueryResult = Apollo.QueryResult<GetFlashCardsQuery, GetFlashCardsQueryVariables>;
 export const CreateWordDocument = gql`
     mutation CreateWord($record: CreateOneWordInput!) {
   wordCreateOne(record: $record) {
