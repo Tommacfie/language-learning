@@ -14,9 +14,20 @@ query GetUsers {
     name
   }
 }
+query GetDecks {
+  deckMany {
+    _id
+    name
+  }
+}
 
 mutation CreateWord($record: CreateOneWordInput!) {
   wordCreateOne(record: $record) {
+    recordId
+  }
+}
+mutation CreateFlashCard($record: CreateOneFlashCardInput!) {
+  flashCardCreateOne(record: $record) {
     recordId
   }
 }

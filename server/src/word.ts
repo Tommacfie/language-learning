@@ -13,8 +13,8 @@ const WordSchema = new Schema({
   polishDescription: String,
   wordType: { type: String, enum: EnumWordClass.getFieldNames() },
   wordGender: { type: String, enum: EnumWordGender.getFieldNames() },
-  cues: [String]!,
-  tags: [String!]!,
+  cues: [String],
+  tags: [String],
 });
 const WordModel = model('Word', WordSchema);
 

@@ -6,10 +6,10 @@ const { Schema, model } = mongoose;
 
 // Mongoose model
 const DeckSchema = new Schema({
-  name: { type: String!, unique: true },
-  tags: [String!]!,
+  name: { type: String, unique: true },
   reversed: { type: Boolean, default: false },
   flashCards: [{ type: Schema.Types.ObjectId, ref: 'FlashCard' }],
+  tags: [String],
 });
 
 const DeckModel = model('Deck', DeckSchema);

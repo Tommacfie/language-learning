@@ -6,11 +6,11 @@ const { Schema, model } = mongoose;
 
 // Mongoose model
 const FlashCardSchema = new Schema({
-  front: String!,
-  back: String!,
+  front: { type: String, required: true },
+  back: { type: String, required: true },
   deck: { type: Schema.Types.ObjectId, ref: 'Deck' },
-  cues: [String]!,
-  tags: [String!]!,
+  cues: [String],
+  tags: [String],
 });
 
 const FlashCardModel = model('FlashCard', FlashCardSchema);

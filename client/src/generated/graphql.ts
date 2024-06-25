@@ -592,12 +592,24 @@ export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetUsersQuery = { userMany: Array<{ name?: string | null }> };
 
+export type GetDecksQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetDecksQuery = { deckMany: Array<{ _id: any, name?: string | null }> };
+
 export type CreateWordMutationVariables = Exact<{
   record: CreateOneWordInput;
 }>;
 
 
 export type CreateWordMutation = { wordCreateOne?: { recordId?: any | null } | null };
+
+export type CreateFlashCardMutationVariables = Exact<{
+  record: CreateOneFlashCardInput;
+}>;
+
+
+export type CreateFlashCardMutation = { flashCardCreateOne?: { recordId?: any | null } | null };
 
 
 export const GetWordsDocument = gql`
@@ -684,6 +696,46 @@ export type GetUsersQueryHookResult = ReturnType<typeof useGetUsersQuery>;
 export type GetUsersLazyQueryHookResult = ReturnType<typeof useGetUsersLazyQuery>;
 export type GetUsersSuspenseQueryHookResult = ReturnType<typeof useGetUsersSuspenseQuery>;
 export type GetUsersQueryResult = Apollo.QueryResult<GetUsersQuery, GetUsersQueryVariables>;
+export const GetDecksDocument = gql`
+    query GetDecks {
+  deckMany {
+    _id
+    name
+  }
+}
+    `;
+
+/**
+ * __useGetDecksQuery__
+ *
+ * To run a query within a React component, call `useGetDecksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetDecksQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetDecksQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetDecksQuery(baseOptions?: Apollo.QueryHookOptions<GetDecksQuery, GetDecksQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetDecksQuery, GetDecksQueryVariables>(GetDecksDocument, options);
+      }
+export function useGetDecksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetDecksQuery, GetDecksQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetDecksQuery, GetDecksQueryVariables>(GetDecksDocument, options);
+        }
+export function useGetDecksSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetDecksQuery, GetDecksQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetDecksQuery, GetDecksQueryVariables>(GetDecksDocument, options);
+        }
+export type GetDecksQueryHookResult = ReturnType<typeof useGetDecksQuery>;
+export type GetDecksLazyQueryHookResult = ReturnType<typeof useGetDecksLazyQuery>;
+export type GetDecksSuspenseQueryHookResult = ReturnType<typeof useGetDecksSuspenseQuery>;
+export type GetDecksQueryResult = Apollo.QueryResult<GetDecksQuery, GetDecksQueryVariables>;
 export const CreateWordDocument = gql`
     mutation CreateWord($record: CreateOneWordInput!) {
   wordCreateOne(record: $record) {
@@ -717,3 +769,36 @@ export function useCreateWordMutation(baseOptions?: Apollo.MutationHookOptions<C
 export type CreateWordMutationHookResult = ReturnType<typeof useCreateWordMutation>;
 export type CreateWordMutationResult = Apollo.MutationResult<CreateWordMutation>;
 export type CreateWordMutationOptions = Apollo.BaseMutationOptions<CreateWordMutation, CreateWordMutationVariables>;
+export const CreateFlashCardDocument = gql`
+    mutation CreateFlashCard($record: CreateOneFlashCardInput!) {
+  flashCardCreateOne(record: $record) {
+    recordId
+  }
+}
+    `;
+export type CreateFlashCardMutationFn = Apollo.MutationFunction<CreateFlashCardMutation, CreateFlashCardMutationVariables>;
+
+/**
+ * __useCreateFlashCardMutation__
+ *
+ * To run a mutation, you first call `useCreateFlashCardMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateFlashCardMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createFlashCardMutation, { data, loading, error }] = useCreateFlashCardMutation({
+ *   variables: {
+ *      record: // value for 'record'
+ *   },
+ * });
+ */
+export function useCreateFlashCardMutation(baseOptions?: Apollo.MutationHookOptions<CreateFlashCardMutation, CreateFlashCardMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateFlashCardMutation, CreateFlashCardMutationVariables>(CreateFlashCardDocument, options);
+      }
+export type CreateFlashCardMutationHookResult = ReturnType<typeof useCreateFlashCardMutation>;
+export type CreateFlashCardMutationResult = Apollo.MutationResult<CreateFlashCardMutation>;
+export type CreateFlashCardMutationOptions = Apollo.BaseMutationOptions<CreateFlashCardMutation, CreateFlashCardMutationVariables>;
