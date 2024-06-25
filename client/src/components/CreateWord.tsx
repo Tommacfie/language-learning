@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   EnumWordWordGender,
   EnumWordWordType,
   useCreateWordMutation,
-} from '../generated/graphql';
+} from "../generated/graphql";
+import { ApolloClient } from "@apollo/client";
 
 type WordInputType = {
   english?: string;
@@ -18,7 +19,9 @@ type WordInputType = {
 export const CreateWord = () => {
   const [wordInput, setWordInput] = useState<WordInputType>();
 
-  const [createWordMutation] = useCreateWordMutation();
+  const [createWordMutation] = useCreateWordMutation({
+    refetchQueries: ["GetWords"],
+  });
 
   const handleSubmit = async () => {
     let tagsArrayToSubmit: string[] = [];
@@ -38,7 +41,7 @@ export const CreateWord = () => {
   };
 
   const parseTagsString = (string: string) => {
-    const splitByHashArray = string.split('#').filter((item) => item != '');
+    const splitByHashArray = string.split("#").filter((item) => item != "");
     return splitByHashArray;
   };
 
