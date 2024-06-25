@@ -55,6 +55,7 @@ export const CreateWord = () => {
         <div>
           <div>English</div>
           <input
+            autoComplete='off'
             type='text'
             name='english'
             value={wordInput?.english}
@@ -67,6 +68,7 @@ export const CreateWord = () => {
         <div>
           <div>Polish</div>
           <input
+            autoComplete='off'
             type='text'
             name='polish'
             value={wordInput?.polish}
@@ -79,6 +81,7 @@ export const CreateWord = () => {
         <div>
           <div>English description</div>
           <input
+            autoComplete='off'
             type='text'
             name='englishDescription'
             value={wordInput?.englishDescription}
@@ -91,6 +94,7 @@ export const CreateWord = () => {
         <div>
           <div>Polish description</div>
           <input
+            autoComplete='off'
             type='text'
             name='polishDescription'
             value={wordInput?.polishDescription}
@@ -103,6 +107,7 @@ export const CreateWord = () => {
         <div>
           <div>Tags</div>
           <input
+            autoComplete='off'
             type='text'
             name='tags'
             value={wordInput?.tags}
