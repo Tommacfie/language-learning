@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
+    "start": "ts-node index.ts ",
     "docker:start": "docker compose stop && docker compose up",
     "docker:compose": "docker compose down && docker compose down -v &&  docker compose up"
   },

@@ -12,9 +12,10 @@ const app = express();
 const server = new ApolloServer({ schema: compiledSchema });
 
 const mongoose = Mongoose;
+console.log(DB);
 
 const startServer = async () => {
-  mongoose.connect(`${DB}`);
+  mongoose.connect(`mongodb://localhost:27017/polish-app-db`);
   mongoose.connection.on('connected', () => {
     if (process.env.NODE_ENV != 'test') {
       logWithDate('✅ Connected to mongodb');

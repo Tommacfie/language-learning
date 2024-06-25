@@ -1,4 +1,47 @@
 """"""
+input CreateOneDeckInput {
+  flashCards: [MongoID]
+  name: String
+  reversed: Boolean
+  tags: [String]
+}
+
+type CreateOneDeckPayload {
+  """
+  Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  """
+  error: ErrorInterface
+
+  """Created document"""
+  record: Deck
+
+  """Document ID"""
+  recordId: MongoID
+}
+
+""""""
+input CreateOneFlashCardInput {
+  back: String
+  cues: [String]
+  deck: MongoID
+  front: String
+  tags: [String]
+}
+
+type CreateOneFlashCardPayload {
+  """
+  Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  """
+  error: ErrorInterface
+
+  """Created document"""
+  record: FlashCard
+
+  """Document ID"""
+  recordId: MongoID
+}
+
+""""""
 input CreateOneUserInput {
   age: Float
   email: String
@@ -21,6 +64,7 @@ type CreateOneUserPayload {
 """"""
 input CreateOneWordInput {
   cues: [String]
+  details: JSON!
   english: String
   englishDescription: String
   polish: String
@@ -41,6 +85,35 @@ type CreateOneWordPayload {
 
   """Document ID"""
   recordId: MongoID
+}
+
+type Deck {
+  _id: MongoID!
+  flashCards: [MongoID]
+  name: String
+  reversed: Boolean
+  tags: [String]
+}
+
+"""A connection to a list of items."""
+type DeckConnection {
+  """Total object count."""
+  count: Int!
+
+  """Information to aid in pagination."""
+  edges: [DeckEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+"""An edge in a connection."""
+type DeckEdge {
+  """A cursor for use in pagination"""
+  cursor: String!
+
+  """The item at the end of the edge"""
+  node: Deck!
 }
 
 enum EnumWordWordGender {
@@ -64,6 +137,80 @@ enum EnumWordWordType {
 interface ErrorInterface {
   """Generic error message"""
   message: String
+}
+
+""""""
+input FilterCountDeckInput {
+  AND: [FilterCountDeckInput!]
+  OR: [FilterCountDeckInput!]
+  _id: MongoID
+
+  """List of *indexed* fields that can be filtered via operators."""
+  _operators: FilterCountDeckOperatorsInput
+  flashCards: [MongoID]
+  name: String
+  reversed: Boolean
+  tags: [String]
+}
+
+input FilterCountDeckNameOperatorsInput {
+  exists: Boolean
+  gt: String
+  gte: String
+  in: [String]
+  lt: String
+  lte: String
+  ne: String
+  nin: [String]
+  regex: RegExpAsString
+}
+
+"""For performance reason this type contains only *indexed* fields."""
+input FilterCountDeckOperatorsInput {
+  _id: FilterCountDeck_idOperatorsInput
+  name: FilterCountDeckNameOperatorsInput
+}
+
+input FilterCountDeck_idOperatorsInput {
+  exists: Boolean
+  gt: MongoID
+  gte: MongoID
+  in: [MongoID]
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  nin: [MongoID]
+}
+
+""""""
+input FilterCountFlashCardInput {
+  AND: [FilterCountFlashCardInput!]
+  OR: [FilterCountFlashCardInput!]
+  _id: MongoID
+
+  """List of *indexed* fields that can be filtered via operators."""
+  _operators: FilterCountFlashCardOperatorsInput
+  back: String
+  cues: [String]
+  deck: MongoID
+  front: String
+  tags: [String]
+}
+
+"""For performance reason this type contains only *indexed* fields."""
+input FilterCountFlashCardOperatorsInput {
+  _id: FilterCountFlashCard_idOperatorsInput
+}
+
+input FilterCountFlashCard_idOperatorsInput {
+  exists: Boolean
+  gt: MongoID
+  gte: MongoID
+  in: [MongoID]
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  nin: [MongoID]
 }
 
 """"""
@@ -104,6 +251,7 @@ input FilterCountWordInput {
   """List of *indexed* fields that can be filtered via operators."""
   _operators: FilterCountWordOperatorsInput
   cues: [String]
+  details: JSON
   english: String
   englishDescription: String
   polish: String
@@ -119,6 +267,80 @@ input FilterCountWordOperatorsInput {
 }
 
 input FilterCountWord_idOperatorsInput {
+  exists: Boolean
+  gt: MongoID
+  gte: MongoID
+  in: [MongoID]
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  nin: [MongoID]
+}
+
+""""""
+input FilterFindManyDeckInput {
+  AND: [FilterFindManyDeckInput!]
+  OR: [FilterFindManyDeckInput!]
+  _id: MongoID
+
+  """List of *indexed* fields that can be filtered via operators."""
+  _operators: FilterFindManyDeckOperatorsInput
+  flashCards: [MongoID]
+  name: String
+  reversed: Boolean
+  tags: [String]
+}
+
+input FilterFindManyDeckNameOperatorsInput {
+  exists: Boolean
+  gt: String
+  gte: String
+  in: [String]
+  lt: String
+  lte: String
+  ne: String
+  nin: [String]
+  regex: RegExpAsString
+}
+
+"""For performance reason this type contains only *indexed* fields."""
+input FilterFindManyDeckOperatorsInput {
+  _id: FilterFindManyDeck_idOperatorsInput
+  name: FilterFindManyDeckNameOperatorsInput
+}
+
+input FilterFindManyDeck_idOperatorsInput {
+  exists: Boolean
+  gt: MongoID
+  gte: MongoID
+  in: [MongoID]
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  nin: [MongoID]
+}
+
+""""""
+input FilterFindManyFlashCardInput {
+  AND: [FilterFindManyFlashCardInput!]
+  OR: [FilterFindManyFlashCardInput!]
+  _id: MongoID
+
+  """List of *indexed* fields that can be filtered via operators."""
+  _operators: FilterFindManyFlashCardOperatorsInput
+  back: String
+  cues: [String]
+  deck: MongoID
+  front: String
+  tags: [String]
+}
+
+"""For performance reason this type contains only *indexed* fields."""
+input FilterFindManyFlashCardOperatorsInput {
+  _id: FilterFindManyFlashCard_idOperatorsInput
+}
+
+input FilterFindManyFlashCard_idOperatorsInput {
   exists: Boolean
   gt: MongoID
   gte: MongoID
@@ -167,6 +389,7 @@ input FilterFindManyWordInput {
   """List of *indexed* fields that can be filtered via operators."""
   _operators: FilterFindManyWordOperatorsInput
   cues: [String]
+  details: JSON
   english: String
   englishDescription: String
   polish: String
@@ -182,6 +405,80 @@ input FilterFindManyWordOperatorsInput {
 }
 
 input FilterFindManyWord_idOperatorsInput {
+  exists: Boolean
+  gt: MongoID
+  gte: MongoID
+  in: [MongoID]
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  nin: [MongoID]
+}
+
+""""""
+input FilterFindOneDeckInput {
+  AND: [FilterFindOneDeckInput!]
+  OR: [FilterFindOneDeckInput!]
+  _id: MongoID
+
+  """List of *indexed* fields that can be filtered via operators."""
+  _operators: FilterFindOneDeckOperatorsInput
+  flashCards: [MongoID]
+  name: String
+  reversed: Boolean
+  tags: [String]
+}
+
+input FilterFindOneDeckNameOperatorsInput {
+  exists: Boolean
+  gt: String
+  gte: String
+  in: [String]
+  lt: String
+  lte: String
+  ne: String
+  nin: [String]
+  regex: RegExpAsString
+}
+
+"""For performance reason this type contains only *indexed* fields."""
+input FilterFindOneDeckOperatorsInput {
+  _id: FilterFindOneDeck_idOperatorsInput
+  name: FilterFindOneDeckNameOperatorsInput
+}
+
+input FilterFindOneDeck_idOperatorsInput {
+  exists: Boolean
+  gt: MongoID
+  gte: MongoID
+  in: [MongoID]
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  nin: [MongoID]
+}
+
+""""""
+input FilterFindOneFlashCardInput {
+  AND: [FilterFindOneFlashCardInput!]
+  OR: [FilterFindOneFlashCardInput!]
+  _id: MongoID
+
+  """List of *indexed* fields that can be filtered via operators."""
+  _operators: FilterFindOneFlashCardOperatorsInput
+  back: String
+  cues: [String]
+  deck: MongoID
+  front: String
+  tags: [String]
+}
+
+"""For performance reason this type contains only *indexed* fields."""
+input FilterFindOneFlashCardOperatorsInput {
+  _id: FilterFindOneFlashCard_idOperatorsInput
+}
+
+input FilterFindOneFlashCard_idOperatorsInput {
   exists: Boolean
   gt: MongoID
   gte: MongoID
@@ -230,6 +527,7 @@ input FilterFindOneWordInput {
   """List of *indexed* fields that can be filtered via operators."""
   _operators: FilterFindOneWordOperatorsInput
   cues: [String]
+  details: JSON
   english: String
   englishDescription: String
   polish: String
@@ -255,6 +553,36 @@ input FilterFindOneWord_idOperatorsInput {
   nin: [MongoID]
 }
 
+type FlashCard {
+  _id: MongoID!
+  back: String
+  cues: [String]
+  deck: MongoID
+  front: String
+  tags: [String]
+}
+
+"""A connection to a list of items."""
+type FlashCardConnection {
+  """Total object count."""
+  count: Int!
+
+  """Information to aid in pagination."""
+  edges: [FlashCardEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+"""An edge in a connection."""
+type FlashCardEdge {
+  """A cursor for use in pagination"""
+  cursor: String!
+
+  """The item at the end of the edge"""
+  node: FlashCard!
+}
+
 """
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
@@ -274,6 +602,36 @@ The `ID` scalar type represents a unique MongoDB identifier in collection. Mongo
 scalar MongoID
 
 type Mutation {
+  """
+  Create one document with mongoose defaults, setters, hooks and validation
+  """
+  deckCreateOne(record: CreateOneDeckInput!): CreateOneDeckPayload
+
+  """
+  Remove one document: 1) Retrieve one document and remove with hooks via findByIdAndRemove. 2) Return removed document.
+  """
+  deckRemoveById(_id: MongoID!): RemoveByIdDeckPayload
+
+  """
+  Update one document: 1) Retrieve one document by findById. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  """
+  deckUpdateById(_id: MongoID!, record: UpdateByIdDeckInput!): UpdateByIdDeckPayload
+
+  """
+  Create one document with mongoose defaults, setters, hooks and validation
+  """
+  flashCardCreateOne(record: CreateOneFlashCardInput!): CreateOneFlashCardPayload
+
+  """
+  Remove one document: 1) Retrieve one document and remove with hooks via findByIdAndRemove. 2) Return removed document.
+  """
+  flashCardRemoveById(_id: MongoID!): RemoveByIdFlashCardPayload
+
+  """
+  Update one document: 1) Retrieve one document by findById. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  """
+  flashCardUpdateById(_id: MongoID!, record: UpdateByIdFlashCardInput!): UpdateByIdFlashCardPayload
+
   """
   Create one document with mongoose defaults, setters, hooks and validation
   """
@@ -321,6 +679,82 @@ type PageInfo {
 }
 
 type Query {
+  deck(_id: MongoID!): Deck
+  deckConnection(
+    """Forward pagination argument for returning at most first edges"""
+    after: String
+
+    """Backward pagination argument for returning at most last edges"""
+    before: String
+
+    """Filter by fields"""
+    filter: FilterFindManyDeckInput
+
+    """Forward pagination argument for returning at most first edges"""
+    first: Int
+
+    """Backward pagination argument for returning at most last edges"""
+    last: Int
+
+    """Sort argument for data ordering"""
+    sort: SortConnectionDeckEnum = _ID_DESC
+  ): DeckConnection
+  deckCount(
+    """Filter by fields"""
+    filter: FilterCountDeckInput
+  ): Int
+  deckMany(
+    """Filter by fields"""
+    filter: FilterFindManyDeckInput
+    limit: Int = 100
+    skip: Int
+    sort: SortFindManyDeckInput
+  ): [Deck!]!
+  deckOne(
+    """Filter by fields"""
+    filter: FilterFindOneDeckInput
+    skip: Int
+    sort: SortFindOneDeckInput
+  ): Deck
+  decks(_ids: [MongoID!]!, limit: Int = 100, sort: SortFindByIdsDeckInput): [Deck!]!
+  flashCard(_id: MongoID!): FlashCard
+  flashCardConnection(
+    """Forward pagination argument for returning at most first edges"""
+    after: String
+
+    """Backward pagination argument for returning at most last edges"""
+    before: String
+
+    """Filter by fields"""
+    filter: FilterFindManyFlashCardInput
+
+    """Forward pagination argument for returning at most first edges"""
+    first: Int
+
+    """Backward pagination argument for returning at most last edges"""
+    last: Int
+
+    """Sort argument for data ordering"""
+    sort: SortConnectionFlashCardEnum = _ID_DESC
+  ): FlashCardConnection
+  flashCardCount(
+    """Filter by fields"""
+    filter: FilterCountFlashCardInput
+  ): Int
+  flashCardMany(
+    """Filter by fields"""
+    filter: FilterFindManyFlashCardInput
+    limit: Int = 100
+    skip: Int
+    sort: SortFindManyFlashCardInput
+  ): [FlashCard!]!
+  flashCardOne(
+    """Filter by fields"""
+    filter: FilterFindOneFlashCardInput
+    skip: Int
+    sort: SortFindOneFlashCardInput
+  ): FlashCard
+  flashCards(_ids: [MongoID!]!, limit: Int = 100, sort: SortFindByIdsFlashCardInput): [FlashCard!]!
   userByIds(_ids: [MongoID!]!, limit: Int = 100, sort: SortFindByIdsUserInput): [User!]!
   userConnection(
     """Forward pagination argument for returning at most first edges"""
@@ -398,6 +832,37 @@ type Query {
   words(_ids: [MongoID!]!, limit: Int = 100, sort: SortFindByIdsWordInput): [Word!]!
 }
 
+"""
+The string representation of JavaScript regexp. You may provide it with flags "/^abc.*/i" or without flags like "^abc.*". More info about RegExp characters and flags: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+"""
+scalar RegExpAsString
+
+type RemoveByIdDeckPayload {
+  """
+  Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  """
+  error: ErrorInterface
+
+  """Removed document"""
+  record: Deck
+
+  """Document ID"""
+  recordId: MongoID
+}
+
+type RemoveByIdFlashCardPayload {
+  """
+  Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  """
+  error: ErrorInterface
+
+  """Removed document"""
+  record: FlashCard
+
+  """Document ID"""
+  recordId: MongoID
+}
+
 type RemoveByIdUserPayload {
   """
   Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
@@ -429,12 +894,36 @@ type RuntimeError implements ErrorInterface {
   message: String
 }
 
+enum SortConnectionDeckEnum {
+  NAME_ASC
+  NAME_DESC
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortConnectionFlashCardEnum {
+  _ID_ASC
+  _ID_DESC
+}
+
 enum SortConnectionUserEnum {
   _ID_ASC
   _ID_DESC
 }
 
 enum SortConnectionWordEnum {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindByIdsDeckInput {
+  NAME_ASC
+  NAME_DESC
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindByIdsFlashCardInput {
   _ID_ASC
   _ID_DESC
 }
@@ -449,12 +938,36 @@ enum SortFindByIdsWordInput {
   _ID_DESC
 }
 
+enum SortFindManyDeckInput {
+  NAME_ASC
+  NAME_DESC
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindManyFlashCardInput {
+  _ID_ASC
+  _ID_DESC
+}
+
 enum SortFindManyUserInput {
   _ID_ASC
   _ID_DESC
 }
 
 enum SortFindManyWordInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneDeckInput {
+  NAME_ASC
+  NAME_DESC
+  _ID_ASC
+  _ID_DESC
+}
+
+enum SortFindOneFlashCardInput {
   _ID_ASC
   _ID_DESC
 }
@@ -467,6 +980,49 @@ enum SortFindOneUserInput {
 enum SortFindOneWordInput {
   _ID_ASC
   _ID_DESC
+}
+
+""""""
+input UpdateByIdDeckInput {
+  flashCards: [MongoID]
+  name: String
+  reversed: Boolean
+  tags: [String]
+}
+
+type UpdateByIdDeckPayload {
+  """
+  Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  """
+  error: ErrorInterface
+
+  """Updated document"""
+  record: Deck
+
+  """Document ID"""
+  recordId: MongoID
+}
+
+""""""
+input UpdateByIdFlashCardInput {
+  back: String
+  cues: [String]
+  deck: MongoID
+  front: String
+  tags: [String]
+}
+
+type UpdateByIdFlashCardPayload {
+  """
+  Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  """
+  error: ErrorInterface
+
+  """Updated document"""
+  record: FlashCard
+
+  """Document ID"""
+  recordId: MongoID
 }
 
 """"""
@@ -492,6 +1048,7 @@ type UpdateByIdUserPayload {
 """"""
 input UpdateByIdWordInput {
   cues: [String]
+  details: JSON
   english: String
   englishDescription: String
   polish: String
@@ -569,6 +1126,7 @@ type ValidatorError {
 type Word {
   _id: MongoID!
   cues: [String]
+  details: JSON!
   english: String
   englishDescription: String
   polish: String

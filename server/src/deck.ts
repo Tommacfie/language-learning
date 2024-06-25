@@ -19,17 +19,17 @@ const DeckType = composeWithMongoose(DeckModel);
 
 // Add fields and resolvers to rootQuery
 schemaComposer.Query.addFields({
-  word: DeckType.getResolver('findById'),
-  words: DeckType.getResolver('findByIds'),
-  wordOne: DeckType.getResolver('findOne'),
-  wordMany: DeckType.getResolver('findMany'),
-  wordCount: DeckType.getResolver('count'),
-  wordConnection: DeckType.getResolver('connection'),
+  deck: DeckType.getResolver('findById'),
+  decks: DeckType.getResolver('findByIds'),
+  deckOne: DeckType.getResolver('findOne'),
+  deckMany: DeckType.getResolver('findMany'),
+  deckCount: DeckType.getResolver('count'),
+  deckConnection: DeckType.getResolver('connection'),
 });
 
 // Add fields and resolvers to Mutation
 schemaComposer.Mutation.addFields({
-  wordCreateOne: DeckType.getResolver('createOne'),
-  wordUpdateById: DeckType.getResolver('updateById'),
-  wordRemoveById: DeckType.getResolver('removeById'),
+  deckCreateOne: DeckType.getResolver('createOne'),
+  deckUpdateById: DeckType.getResolver('updateById'),
+  deckRemoveById: DeckType.getResolver('removeById'),
 });

@@ -20,17 +20,17 @@ const FlashCardType = composeWithMongoose(FlashCardModel);
 
 // Add fields and resolvers to rootQuery
 schemaComposer.Query.addFields({
-  word: FlashCardType.getResolver('findById'),
-  words: FlashCardType.getResolver('findByIds'),
-  wordOne: FlashCardType.getResolver('findOne'),
-  wordMany: FlashCardType.getResolver('findMany'),
-  wordCount: FlashCardType.getResolver('count'),
-  wordConnection: FlashCardType.getResolver('connection'),
+  flashCard: FlashCardType.getResolver('findById'),
+  flashCards: FlashCardType.getResolver('findByIds'),
+  flashCardOne: FlashCardType.getResolver('findOne'),
+  flashCardMany: FlashCardType.getResolver('findMany'),
+  flashCardCount: FlashCardType.getResolver('count'),
+  flashCardConnection: FlashCardType.getResolver('connection'),
 });
 
 // Add fields and resolvers to Mutation
 schemaComposer.Mutation.addFields({
-  wordCreateOne: FlashCardType.getResolver('createOne'),
-  wordUpdateById: FlashCardType.getResolver('updateById'),
-  wordRemoveById: FlashCardType.getResolver('removeById'),
+  flashCardCreateOne: FlashCardType.getResolver('createOne'),
+  flashCardUpdateById: FlashCardType.getResolver('updateById'),
+  flashCardRemoveById: FlashCardType.getResolver('removeById'),
 });

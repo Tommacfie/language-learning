@@ -17,6 +17,22 @@ export type Scalars = {
   Float: { input: number; output: number; }
   JSON: { input: any; output: any; }
   MongoID: { input: any; output: any; }
+  RegExpAsString: { input: any; output: any; }
+};
+
+export type CreateOneDeckInput = {
+  flashCards?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  reversed?: InputMaybe<Scalars['Boolean']['input']>;
+  tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type CreateOneFlashCardInput = {
+  back?: InputMaybe<Scalars['String']['input']>;
+  cues?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  deck?: InputMaybe<Scalars['MongoID']['input']>;
+  front?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type CreateOneUserInput = {
@@ -27,6 +43,7 @@ export type CreateOneUserInput = {
 
 export type CreateOneWordInput = {
   cues?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  details: Scalars['JSON']['input'];
   english?: InputMaybe<Scalars['String']['input']>;
   englishDescription?: InputMaybe<Scalars['String']['input']>;
   polish?: InputMaybe<Scalars['String']['input']>;
@@ -53,6 +70,76 @@ export enum EnumWordWordType {
   wykrzykniki = 'wykrzykniki',
   zaimek = 'zaimek'
 }
+
+export type FilterCountDeckInput = {
+  AND?: InputMaybe<Array<FilterCountDeckInput>>;
+  OR?: InputMaybe<Array<FilterCountDeckInput>>;
+  _id?: InputMaybe<Scalars['MongoID']['input']>;
+  /** List of *indexed* fields that can be filtered via operators. */
+  _operators?: InputMaybe<FilterCountDeckOperatorsInput>;
+  flashCards?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  reversed?: InputMaybe<Scalars['Boolean']['input']>;
+  tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type FilterCountDeckNameOperatorsInput = {
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  nin?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  regex?: InputMaybe<Scalars['RegExpAsString']['input']>;
+};
+
+/** For performance reason this type contains only *indexed* fields. */
+export type FilterCountDeckOperatorsInput = {
+  _id?: InputMaybe<FilterCountDeck_IdOperatorsInput>;
+  name?: InputMaybe<FilterCountDeckNameOperatorsInput>;
+};
+
+export type FilterCountDeck_IdOperatorsInput = {
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  gt?: InputMaybe<Scalars['MongoID']['input']>;
+  gte?: InputMaybe<Scalars['MongoID']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
+  lt?: InputMaybe<Scalars['MongoID']['input']>;
+  lte?: InputMaybe<Scalars['MongoID']['input']>;
+  ne?: InputMaybe<Scalars['MongoID']['input']>;
+  nin?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
+};
+
+export type FilterCountFlashCardInput = {
+  AND?: InputMaybe<Array<FilterCountFlashCardInput>>;
+  OR?: InputMaybe<Array<FilterCountFlashCardInput>>;
+  _id?: InputMaybe<Scalars['MongoID']['input']>;
+  /** List of *indexed* fields that can be filtered via operators. */
+  _operators?: InputMaybe<FilterCountFlashCardOperatorsInput>;
+  back?: InputMaybe<Scalars['String']['input']>;
+  cues?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  deck?: InputMaybe<Scalars['MongoID']['input']>;
+  front?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+/** For performance reason this type contains only *indexed* fields. */
+export type FilterCountFlashCardOperatorsInput = {
+  _id?: InputMaybe<FilterCountFlashCard_IdOperatorsInput>;
+};
+
+export type FilterCountFlashCard_IdOperatorsInput = {
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  gt?: InputMaybe<Scalars['MongoID']['input']>;
+  gte?: InputMaybe<Scalars['MongoID']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
+  lt?: InputMaybe<Scalars['MongoID']['input']>;
+  lte?: InputMaybe<Scalars['MongoID']['input']>;
+  ne?: InputMaybe<Scalars['MongoID']['input']>;
+  nin?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
+};
 
 export type FilterCountUserInput = {
   AND?: InputMaybe<Array<FilterCountUserInput>>;
@@ -88,6 +175,7 @@ export type FilterCountWordInput = {
   /** List of *indexed* fields that can be filtered via operators. */
   _operators?: InputMaybe<FilterCountWordOperatorsInput>;
   cues?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  details?: InputMaybe<Scalars['JSON']['input']>;
   english?: InputMaybe<Scalars['String']['input']>;
   englishDescription?: InputMaybe<Scalars['String']['input']>;
   polish?: InputMaybe<Scalars['String']['input']>;
@@ -103,6 +191,76 @@ export type FilterCountWordOperatorsInput = {
 };
 
 export type FilterCountWord_IdOperatorsInput = {
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  gt?: InputMaybe<Scalars['MongoID']['input']>;
+  gte?: InputMaybe<Scalars['MongoID']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
+  lt?: InputMaybe<Scalars['MongoID']['input']>;
+  lte?: InputMaybe<Scalars['MongoID']['input']>;
+  ne?: InputMaybe<Scalars['MongoID']['input']>;
+  nin?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
+};
+
+export type FilterFindManyDeckInput = {
+  AND?: InputMaybe<Array<FilterFindManyDeckInput>>;
+  OR?: InputMaybe<Array<FilterFindManyDeckInput>>;
+  _id?: InputMaybe<Scalars['MongoID']['input']>;
+  /** List of *indexed* fields that can be filtered via operators. */
+  _operators?: InputMaybe<FilterFindManyDeckOperatorsInput>;
+  flashCards?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  reversed?: InputMaybe<Scalars['Boolean']['input']>;
+  tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type FilterFindManyDeckNameOperatorsInput = {
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  nin?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  regex?: InputMaybe<Scalars['RegExpAsString']['input']>;
+};
+
+/** For performance reason this type contains only *indexed* fields. */
+export type FilterFindManyDeckOperatorsInput = {
+  _id?: InputMaybe<FilterFindManyDeck_IdOperatorsInput>;
+  name?: InputMaybe<FilterFindManyDeckNameOperatorsInput>;
+};
+
+export type FilterFindManyDeck_IdOperatorsInput = {
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  gt?: InputMaybe<Scalars['MongoID']['input']>;
+  gte?: InputMaybe<Scalars['MongoID']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
+  lt?: InputMaybe<Scalars['MongoID']['input']>;
+  lte?: InputMaybe<Scalars['MongoID']['input']>;
+  ne?: InputMaybe<Scalars['MongoID']['input']>;
+  nin?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
+};
+
+export type FilterFindManyFlashCardInput = {
+  AND?: InputMaybe<Array<FilterFindManyFlashCardInput>>;
+  OR?: InputMaybe<Array<FilterFindManyFlashCardInput>>;
+  _id?: InputMaybe<Scalars['MongoID']['input']>;
+  /** List of *indexed* fields that can be filtered via operators. */
+  _operators?: InputMaybe<FilterFindManyFlashCardOperatorsInput>;
+  back?: InputMaybe<Scalars['String']['input']>;
+  cues?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  deck?: InputMaybe<Scalars['MongoID']['input']>;
+  front?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+/** For performance reason this type contains only *indexed* fields. */
+export type FilterFindManyFlashCardOperatorsInput = {
+  _id?: InputMaybe<FilterFindManyFlashCard_IdOperatorsInput>;
+};
+
+export type FilterFindManyFlashCard_IdOperatorsInput = {
   exists?: InputMaybe<Scalars['Boolean']['input']>;
   gt?: InputMaybe<Scalars['MongoID']['input']>;
   gte?: InputMaybe<Scalars['MongoID']['input']>;
@@ -147,6 +305,7 @@ export type FilterFindManyWordInput = {
   /** List of *indexed* fields that can be filtered via operators. */
   _operators?: InputMaybe<FilterFindManyWordOperatorsInput>;
   cues?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  details?: InputMaybe<Scalars['JSON']['input']>;
   english?: InputMaybe<Scalars['String']['input']>;
   englishDescription?: InputMaybe<Scalars['String']['input']>;
   polish?: InputMaybe<Scalars['String']['input']>;
@@ -162,6 +321,76 @@ export type FilterFindManyWordOperatorsInput = {
 };
 
 export type FilterFindManyWord_IdOperatorsInput = {
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  gt?: InputMaybe<Scalars['MongoID']['input']>;
+  gte?: InputMaybe<Scalars['MongoID']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
+  lt?: InputMaybe<Scalars['MongoID']['input']>;
+  lte?: InputMaybe<Scalars['MongoID']['input']>;
+  ne?: InputMaybe<Scalars['MongoID']['input']>;
+  nin?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
+};
+
+export type FilterFindOneDeckInput = {
+  AND?: InputMaybe<Array<FilterFindOneDeckInput>>;
+  OR?: InputMaybe<Array<FilterFindOneDeckInput>>;
+  _id?: InputMaybe<Scalars['MongoID']['input']>;
+  /** List of *indexed* fields that can be filtered via operators. */
+  _operators?: InputMaybe<FilterFindOneDeckOperatorsInput>;
+  flashCards?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  reversed?: InputMaybe<Scalars['Boolean']['input']>;
+  tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type FilterFindOneDeckNameOperatorsInput = {
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  nin?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  regex?: InputMaybe<Scalars['RegExpAsString']['input']>;
+};
+
+/** For performance reason this type contains only *indexed* fields. */
+export type FilterFindOneDeckOperatorsInput = {
+  _id?: InputMaybe<FilterFindOneDeck_IdOperatorsInput>;
+  name?: InputMaybe<FilterFindOneDeckNameOperatorsInput>;
+};
+
+export type FilterFindOneDeck_IdOperatorsInput = {
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  gt?: InputMaybe<Scalars['MongoID']['input']>;
+  gte?: InputMaybe<Scalars['MongoID']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
+  lt?: InputMaybe<Scalars['MongoID']['input']>;
+  lte?: InputMaybe<Scalars['MongoID']['input']>;
+  ne?: InputMaybe<Scalars['MongoID']['input']>;
+  nin?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
+};
+
+export type FilterFindOneFlashCardInput = {
+  AND?: InputMaybe<Array<FilterFindOneFlashCardInput>>;
+  OR?: InputMaybe<Array<FilterFindOneFlashCardInput>>;
+  _id?: InputMaybe<Scalars['MongoID']['input']>;
+  /** List of *indexed* fields that can be filtered via operators. */
+  _operators?: InputMaybe<FilterFindOneFlashCardOperatorsInput>;
+  back?: InputMaybe<Scalars['String']['input']>;
+  cues?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  deck?: InputMaybe<Scalars['MongoID']['input']>;
+  front?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+/** For performance reason this type contains only *indexed* fields. */
+export type FilterFindOneFlashCardOperatorsInput = {
+  _id?: InputMaybe<FilterFindOneFlashCard_IdOperatorsInput>;
+};
+
+export type FilterFindOneFlashCard_IdOperatorsInput = {
   exists?: InputMaybe<Scalars['Boolean']['input']>;
   gt?: InputMaybe<Scalars['MongoID']['input']>;
   gte?: InputMaybe<Scalars['MongoID']['input']>;
@@ -206,6 +435,7 @@ export type FilterFindOneWordInput = {
   /** List of *indexed* fields that can be filtered via operators. */
   _operators?: InputMaybe<FilterFindOneWordOperatorsInput>;
   cues?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  details?: InputMaybe<Scalars['JSON']['input']>;
   english?: InputMaybe<Scalars['String']['input']>;
   englishDescription?: InputMaybe<Scalars['String']['input']>;
   polish?: InputMaybe<Scalars['String']['input']>;
@@ -231,12 +461,36 @@ export type FilterFindOneWord_IdOperatorsInput = {
   nin?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
 };
 
+export enum SortConnectionDeckEnum {
+  NAME_ASC = 'NAME_ASC',
+  NAME_DESC = 'NAME_DESC',
+  _ID_ASC = '_ID_ASC',
+  _ID_DESC = '_ID_DESC'
+}
+
+export enum SortConnectionFlashCardEnum {
+  _ID_ASC = '_ID_ASC',
+  _ID_DESC = '_ID_DESC'
+}
+
 export enum SortConnectionUserEnum {
   _ID_ASC = '_ID_ASC',
   _ID_DESC = '_ID_DESC'
 }
 
 export enum SortConnectionWordEnum {
+  _ID_ASC = '_ID_ASC',
+  _ID_DESC = '_ID_DESC'
+}
+
+export enum SortFindByIdsDeckInput {
+  NAME_ASC = 'NAME_ASC',
+  NAME_DESC = 'NAME_DESC',
+  _ID_ASC = '_ID_ASC',
+  _ID_DESC = '_ID_DESC'
+}
+
+export enum SortFindByIdsFlashCardInput {
   _ID_ASC = '_ID_ASC',
   _ID_DESC = '_ID_DESC'
 }
@@ -251,12 +505,36 @@ export enum SortFindByIdsWordInput {
   _ID_DESC = '_ID_DESC'
 }
 
+export enum SortFindManyDeckInput {
+  NAME_ASC = 'NAME_ASC',
+  NAME_DESC = 'NAME_DESC',
+  _ID_ASC = '_ID_ASC',
+  _ID_DESC = '_ID_DESC'
+}
+
+export enum SortFindManyFlashCardInput {
+  _ID_ASC = '_ID_ASC',
+  _ID_DESC = '_ID_DESC'
+}
+
 export enum SortFindManyUserInput {
   _ID_ASC = '_ID_ASC',
   _ID_DESC = '_ID_DESC'
 }
 
 export enum SortFindManyWordInput {
+  _ID_ASC = '_ID_ASC',
+  _ID_DESC = '_ID_DESC'
+}
+
+export enum SortFindOneDeckInput {
+  NAME_ASC = 'NAME_ASC',
+  NAME_DESC = 'NAME_DESC',
+  _ID_ASC = '_ID_ASC',
+  _ID_DESC = '_ID_DESC'
+}
+
+export enum SortFindOneFlashCardInput {
   _ID_ASC = '_ID_ASC',
   _ID_DESC = '_ID_DESC'
 }
@@ -271,6 +549,21 @@ export enum SortFindOneWordInput {
   _ID_DESC = '_ID_DESC'
 }
 
+export type UpdateByIdDeckInput = {
+  flashCards?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  reversed?: InputMaybe<Scalars['Boolean']['input']>;
+  tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type UpdateByIdFlashCardInput = {
+  back?: InputMaybe<Scalars['String']['input']>;
+  cues?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  deck?: InputMaybe<Scalars['MongoID']['input']>;
+  front?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type UpdateByIdUserInput = {
   age?: InputMaybe<Scalars['Float']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
@@ -279,6 +572,7 @@ export type UpdateByIdUserInput = {
 
 export type UpdateByIdWordInput = {
   cues?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  details?: InputMaybe<Scalars['JSON']['input']>;
   english?: InputMaybe<Scalars['String']['input']>;
   englishDescription?: InputMaybe<Scalars['String']['input']>;
   polish?: InputMaybe<Scalars['String']['input']>;
