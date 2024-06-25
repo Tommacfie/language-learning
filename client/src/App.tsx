@@ -5,19 +5,20 @@ import { CreateWord } from "./components/CreateWord";
 import { ShowDecks } from "./components/ShowDecks";
 import { ShowFlashCards } from "./components/ShowFlashCards";
 import { ShowWords } from "./components/ShowWords";
+import MainContainer from "./containers/MainContainer";
 
 export const App = () => {
   return (
-    <>
-      <CreateFlashCard />
+    <MainContainer>
+      {/* <CreateFlashCard />
       <ShowFlashCards />
       <hr />
-      <CreateDeck />
+      <CreateDeck /> */}
       <ShowDecks />
-      <hr />
+      {/* <hr />
       <CreateWord />
-      <ShowWords />
-    </>
+      <ShowWords /> */}
+    </MainContainer>
   );
 };
 
