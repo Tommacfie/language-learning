@@ -31,3 +31,8 @@ mutation CreateFlashCard($record: CreateOneFlashCardInput!) {
     recordId
   }
 }
+mutation CreateDeck($record: CreateOneDeckInput!) {
+  deckCreateOne(record: $record) {
+    recordId
+  }
+}

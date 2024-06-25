@@ -611,6 +611,13 @@ export type CreateFlashCardMutationVariables = Exact<{
 
 export type CreateFlashCardMutation = { flashCardCreateOne?: { recordId?: any | null } | null };
 
+export type CreateDeckMutationVariables = Exact<{
+  record: CreateOneDeckInput;
+}>;
+
+
+export type CreateDeckMutation = { deckCreateOne?: { recordId?: any | null } | null };
+
 
 export const GetWordsDocument = gql`
     query GetWords {
@@ -802,3 +809,36 @@ export function useCreateFlashCardMutation(baseOptions?: Apollo.MutationHookOpti
 export type CreateFlashCardMutationHookResult = ReturnType<typeof useCreateFlashCardMutation>;
 export type CreateFlashCardMutationResult = Apollo.MutationResult<CreateFlashCardMutation>;
 export type CreateFlashCardMutationOptions = Apollo.BaseMutationOptions<CreateFlashCardMutation, CreateFlashCardMutationVariables>;
+export const CreateDeckDocument = gql`
+    mutation CreateDeck($record: CreateOneDeckInput!) {
+  deckCreateOne(record: $record) {
+    recordId
+  }
+}
+    `;
+export type CreateDeckMutationFn = Apollo.MutationFunction<CreateDeckMutation, CreateDeckMutationVariables>;
+
+/**
+ * __useCreateDeckMutation__
+ *
+ * To run a mutation, you first call `useCreateDeckMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateDeckMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createDeckMutation, { data, loading, error }] = useCreateDeckMutation({
+ *   variables: {
+ *      record: // value for 'record'
+ *   },
+ * });
+ */
+export function useCreateDeckMutation(baseOptions?: Apollo.MutationHookOptions<CreateDeckMutation, CreateDeckMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateDeckMutation, CreateDeckMutationVariables>(CreateDeckDocument, options);
+      }
+export type CreateDeckMutationHookResult = ReturnType<typeof useCreateDeckMutation>;
+export type CreateDeckMutationResult = Apollo.MutationResult<CreateDeckMutation>;
+export type CreateDeckMutationOptions = Apollo.BaseMutationOptions<CreateDeckMutation, CreateDeckMutationVariables>;

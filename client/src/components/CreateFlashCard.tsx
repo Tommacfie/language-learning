@@ -3,7 +3,7 @@ import { ApolloClient } from "@apollo/client";
 import {
   useCreateFlashCardMutation,
   useGetDecksQuery,
-} from "~/generated/graphql";
+} from "../generated/graphql";
 
 type FlashCardInputType = {
   front: string;
@@ -23,7 +23,9 @@ const defaultValues = {
 
 export const CreateFlashCard = () => {
   const { data } = useGetDecksQuery();
+
   const decks = data?.deckMany;
+
   const [flashCardInput, setFlashCardInput] =
     useState<FlashCardInputType>(defaultValues);
 
