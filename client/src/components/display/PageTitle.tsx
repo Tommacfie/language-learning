@@ -1,5 +1,3 @@
-import React from "react";
-
 const PageTitle = ({ text }: { text: string }) => {
   return (
     <>

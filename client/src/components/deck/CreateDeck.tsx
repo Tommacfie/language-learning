@@ -1,8 +1,5 @@
 import { useState } from "react";
-import {
-  useCreateDeckMutation,
-  useGetDecksQuery,
-} from "../../generated/graphql";
+import { useCreateDeckMutation } from "../../generated/graphql";
 import { navigate } from "wouter/use-browser-location";
 import PageTitle from "../display/PageTitle";
 

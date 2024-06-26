@@ -1,11 +1,8 @@
 import { Route, Switch } from "wouter";
 import "./App.css";
 import { CreateDeck } from "./components/deck/CreateDeck";
-import { CreateFlashCard } from "./components/CreateFlashCard";
-import { CreateWord } from "./components/CreateWord";
 import { ShowDecks } from "./components/deck/ShowDecks";
 import { ShowFlashCards } from "./components/flashCard/ShowFlashCards";
-import { ShowWords } from "./components/ShowWords";
 import MainContainer from "./containers/MainContainer";
 
 export const App = () => {
