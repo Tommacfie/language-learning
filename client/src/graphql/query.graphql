@@ -21,6 +21,13 @@ query GetDecks {
     reversed
   }
 }
+query GetDeckByID($id: MongoID!) {
+  deck(_id: $id) {
+    _id
+    name
+    reversed
+  }
+}
 query GetFlashCards {
   flashCardMany {
     _id

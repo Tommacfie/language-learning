@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { useCreateDeckMutation, useGetDecksQuery } from "../generated/graphql";
+import {
+  useCreateDeckMutation,
+  useGetDecksQuery,
+} from "../../generated/graphql";
+import { navigate } from "wouter/use-browser-location";
+import PageTitle from "../display/PageTitle";
 
 type DeckInputType = {
   name: string;
@@ -32,6 +37,8 @@ export const CreateDeck = () => {
     await createDeckMutation({
       variables: { record: { ...recordToSubmit, reversed: false } },
     });
+
+    navigate("/");
   };
 
   const parseTagsString = (string: string) => {
@@ -41,7 +48,7 @@ export const CreateDeck = () => {
 
   return (
     <div>
-      <div>Deck Creation</div>
+      <PageTitle text='Create a Deck' />
       <div className='flex flex-col gap-2'>
         <div>
           <div>Name</div>

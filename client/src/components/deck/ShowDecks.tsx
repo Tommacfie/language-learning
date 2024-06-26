@@ -1,5 +1,10 @@
 import React from "react";
-import { useGetDecksQuery, useUpdateDeckMutation } from "../generated/graphql";
+import {
+  useGetDecksQuery,
+  useUpdateDeckMutation,
+} from "../../generated/graphql";
+import { Link } from "wouter";
+import PageTitle from "../display/PageTitle";
 
 export const ShowDecks = () => {
   const { data } = useGetDecksQuery();
@@ -12,8 +17,7 @@ export const ShowDecks = () => {
 
   return (
     <div>
-      <div className='h-[10vh] flex items-center justify-center'>Decks</div>
-      <hr />
+      <PageTitle text='Decks' />
       <ul className='gap-2'>
         {decks?.map((deck) => {
           return (
@@ -47,8 +51,8 @@ export const ShowDecks = () => {
                 </label>
               </div>
               <div className='ml-auto flex flex-col'>
-                <div>view</div>
-                <div>edit</div>
+                <Link href={`/deck/view/${deck._id}`}>view</Link>
+                <Link href={`/deck/edit/${deck._id}`}>edit</Link>
               </div>
             </li>
           );

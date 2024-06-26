@@ -663,6 +663,13 @@ export type GetDecksQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetDecksQuery = { deckMany: Array<{ _id: any, name?: string | null, reversed: boolean }> };
 
+export type GetDeckByIdQueryVariables = Exact<{
+  id: Scalars['MongoID']['input'];
+}>;
+
+
+export type GetDeckByIdQuery = { deck?: { _id: any, name?: string | null, reversed: boolean } | null };
+
 export type GetFlashCardsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1094,6 +1101,48 @@ export type GetDecksQueryHookResult = ReturnType<typeof useGetDecksQuery>;
 export type GetDecksLazyQueryHookResult = ReturnType<typeof useGetDecksLazyQuery>;
 export type GetDecksSuspenseQueryHookResult = ReturnType<typeof useGetDecksSuspenseQuery>;
 export type GetDecksQueryResult = Apollo.QueryResult<GetDecksQuery, GetDecksQueryVariables>;
+export const GetDeckByIdDocument = gql`
+    query GetDeckByID($id: MongoID!) {
+  deck(_id: $id) {
+    _id
+    name
+    reversed
+  }
+}
+    `;
+
+/**
+ * __useGetDeckByIdQuery__
+ *
+ * To run a query within a React component, call `useGetDeckByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetDeckByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetDeckByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetDeckByIdQuery(baseOptions: Apollo.QueryHookOptions<GetDeckByIdQuery, GetDeckByIdQueryVariables> & ({ variables: GetDeckByIdQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetDeckByIdQuery, GetDeckByIdQueryVariables>(GetDeckByIdDocument, options);
+      }
+export function useGetDeckByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetDeckByIdQuery, GetDeckByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetDeckByIdQuery, GetDeckByIdQueryVariables>(GetDeckByIdDocument, options);
+        }
+export function useGetDeckByIdSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetDeckByIdQuery, GetDeckByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetDeckByIdQuery, GetDeckByIdQueryVariables>(GetDeckByIdDocument, options);
+        }
+export type GetDeckByIdQueryHookResult = ReturnType<typeof useGetDeckByIdQuery>;
+export type GetDeckByIdLazyQueryHookResult = ReturnType<typeof useGetDeckByIdLazyQuery>;
+export type GetDeckByIdSuspenseQueryHookResult = ReturnType<typeof useGetDeckByIdSuspenseQuery>;
+export type GetDeckByIdQueryResult = Apollo.QueryResult<GetDeckByIdQuery, GetDeckByIdQueryVariables>;
 export const GetFlashCardsDocument = gql`
     query GetFlashCards {
   flashCardMany {

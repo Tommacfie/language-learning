@@ -1,10 +1,10 @@
 import { Route, Switch } from "wouter";
 import "./App.css";
-import { CreateDeck } from "./components/CreateDeck";
+import { CreateDeck } from "./components/deck/CreateDeck";
 import { CreateFlashCard } from "./components/CreateFlashCard";
 import { CreateWord } from "./components/CreateWord";
-import { ShowDecks } from "./components/ShowDecks";
-import { ShowFlashCards } from "./components/ShowFlashCards";
+import { ShowDecks } from "./components/deck/ShowDecks";
+import { ShowFlashCards } from "./components/flashCard/ShowFlashCards";
 import { ShowWords } from "./components/ShowWords";
 import MainContainer from "./containers/MainContainer";
 
@@ -15,15 +15,19 @@ export const App = () => {
         <Route path='/'>
           <ShowDecks />
         </Route>
-        <Route path='/createDeck'>
-          <CreateDeck />
+        <Route path='/deck' nest>
+          <Route path='/view/:id'>
+            <ShowFlashCards />
+          </Route>
+          <Route path='/create'>
+            <CreateDeck />
+          </Route>
+          <Route path='/edit/:id'></Route>
+          <Route path='/flashCard' nest>
+            <Route path='/create'></Route>
+            <Route path='/edit'></Route>
+          </Route>
         </Route>
-        {/* <CreateFlashCard />
-          <ShowFlashCards />
-          <hr />*/}
-        {/* <hr />
-          <CreateWord />
-          <ShowWords /> */}
       </Switch>
     </MainContainer>
   );

@@ -7,7 +7,7 @@ const NavBar = () => {
         Decks
       </Link>
       <Link
-        href='/createDeck'
+        href='/deck/create'
         className='w-1/3 flex items-center justify-center'
       >
         Create
