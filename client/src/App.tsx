@@ -1,3 +1,4 @@
+import { Route, Switch } from "wouter";
 import "./App.css";
 import { CreateDeck } from "./components/CreateDeck";
 import { CreateFlashCard } from "./components/CreateFlashCard";
@@ -10,14 +11,20 @@ import MainContainer from "./containers/MainContainer";
 export const App = () => {
   return (
     <MainContainer>
-      {/* <CreateFlashCard />
-        <ShowFlashCards />
-        <hr />*/}
-      <CreateDeck />
-      <ShowDecks />
-      {/* <hr />
-        <CreateWord />
-        <ShowWords /> */}
+      <Switch>
+        <Route path='/'>
+          <ShowDecks />
+        </Route>
+        <Route path='/createDeck'>
+          <CreateDeck />
+        </Route>
+        {/* <CreateFlashCard />
+          <ShowFlashCards />
+          <hr />*/}
+        {/* <hr />
+          <CreateWord />
+          <ShowWords /> */}
+      </Switch>
     </MainContainer>
   );
 };
