@@ -11,13 +11,13 @@ export const App = () => {
   return (
     <MainContainer>
       {/* <CreateFlashCard />
-      <ShowFlashCards />
-      <hr />*/}
+        <ShowFlashCards />
+        <hr />*/}
       <CreateDeck />
       <ShowDecks />
       {/* <hr />
-      <CreateWord />
-      <ShowWords /> */}
+        <CreateWord />
+        <ShowWords /> */}
     </MainContainer>
   );
 };

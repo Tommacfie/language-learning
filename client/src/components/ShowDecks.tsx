@@ -17,7 +17,10 @@ export const ShowDecks = () => {
       <ul className='gap-2'>
         {decks?.map((deck) => {
           return (
-            <li className='flex justify-center gap-2 p-2 my-2 border rounded-md'>
+            <li
+              className='flex justify-center gap-2 p-2 my-2 border rounded-md'
+              key={deck._id}
+            >
               <div className='flex justify-center items-center'>
                 {deck.name}
               </div>
