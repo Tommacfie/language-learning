@@ -48,7 +48,11 @@ WordSchema.pre('save', () => {
 });
 
 // Generate GraphQL Type
-const WordType = composeWithMongoose(WordModel);
+const WordType = composeWithMongoose(WordModel, {
+  fields: {
+    remove: ['__v'],
+  },
+});
 
 // Add fields and resolvers to rootQuery
 schemaComposer.Query.addFields({

@@ -18,6 +18,7 @@ query GetDecks {
   deckMany {
     _id
     name
+    reversed
   }
 }
 query GetFlashCards {
@@ -28,21 +29,5 @@ query GetFlashCards {
     deck
     cues
     tags
-  }
-}
-
-mutation CreateWord($record: CreateOneWordInput!) {
-  wordCreateOne(record: $record) {
-    recordId
-  }
-}
-mutation CreateFlashCard($record: CreateOneFlashCardInput!) {
-  flashCardCreateOne(record: $record) {
-    recordId
-  }
-}
-mutation CreateDeck($record: CreateOneDeckInput!) {
-  deckCreateOne(record: $record) {
-    recordId
   }
 }

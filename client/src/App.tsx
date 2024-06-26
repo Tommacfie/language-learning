@@ -12,8 +12,8 @@ export const App = () => {
     <MainContainer>
       {/* <CreateFlashCard />
       <ShowFlashCards />
-      <hr />
-      <CreateDeck /> */}
+      <hr />*/}
+      <CreateDeck />
       <ShowDecks />
       {/* <hr />
       <CreateWord />

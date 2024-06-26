@@ -2,7 +2,7 @@
 input CreateOneDeckInput {
   flashCards: [MongoID]
   name: String
-  reversed: Boolean
+  reversed: Boolean!
   tags: [String]
 }
 
@@ -21,10 +21,10 @@ type CreateOneDeckPayload {
 
 """"""
 input CreateOneFlashCardInput {
-  back: String
+  back: String!
   cues: [String]
   deck: MongoID
-  front: String
+  front: String!
   tags: [String]
 }
 
@@ -43,9 +43,9 @@ type CreateOneFlashCardPayload {
 
 """"""
 input CreateOneUserInput {
-  age: Float
-  email: String
-  name: String
+  age: Float!
+  email: String!
+  name: String!
 }
 
 type CreateOneUserPayload {
@@ -91,7 +91,7 @@ type Deck {
   _id: MongoID!
   flashCards: [MongoID]
   name: String
-  reversed: Boolean
+  reversed: Boolean!
   tags: [String]
 }
 
@@ -555,10 +555,10 @@ input FilterFindOneWord_idOperatorsInput {
 
 type FlashCard {
   _id: MongoID!
-  back: String
+  back: String!
   cues: [String]
   deck: MongoID
-  front: String
+  front: String!
   tags: [String]
 }
 
@@ -1073,9 +1073,9 @@ type UpdateByIdWordPayload {
 
 type User {
   _id: MongoID!
-  age: Float
-  email: String
-  name: String
+  age: Float!
+  email: String!
+  name: String!
 }
 
 """A connection to a list of items."""

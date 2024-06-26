@@ -30,7 +30,7 @@ export const CreateDeck = () => {
     };
 
     await createDeckMutation({
-      variables: { record: recordToSubmit },
+      variables: { record: { ...recordToSubmit, reversed: false } },
     });
   };
 

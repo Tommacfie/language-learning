@@ -23,22 +23,22 @@ export type Scalars = {
 export type CreateOneDeckInput = {
   flashCards?: InputMaybe<Array<InputMaybe<Scalars['MongoID']['input']>>>;
   name?: InputMaybe<Scalars['String']['input']>;
-  reversed?: InputMaybe<Scalars['Boolean']['input']>;
+  reversed: Scalars['Boolean']['input'];
   tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type CreateOneFlashCardInput = {
-  back?: InputMaybe<Scalars['String']['input']>;
+  back: Scalars['String']['input'];
   cues?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   deck?: InputMaybe<Scalars['MongoID']['input']>;
-  front?: InputMaybe<Scalars['String']['input']>;
+  front: Scalars['String']['input'];
   tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type CreateOneUserInput = {
-  age?: InputMaybe<Scalars['Float']['input']>;
-  email?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
+  age: Scalars['Float']['input'];
+  email: Scalars['String']['input'];
+  name: Scalars['String']['input'];
 };
 
 export type CreateOneWordInput = {
@@ -582,26 +582,6 @@ export type UpdateByIdWordInput = {
   wordType?: InputMaybe<EnumWordWordType>;
 };
 
-export type GetWordsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetWordsQuery = { wordMany: Array<{ english?: string | null, polish?: string | null, englishDescription?: string | null, polishDescription?: string | null, tags?: Array<string | null> | null, wordGender?: EnumWordWordGender | null, wordType?: EnumWordWordType | null }> };
-
-export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetUsersQuery = { userMany: Array<{ name?: string | null }> };
-
-export type GetDecksQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetDecksQuery = { deckMany: Array<{ _id: any, name?: string | null }> };
-
-export type GetFlashCardsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetFlashCardsQuery = { flashCardMany: Array<{ _id: any, front?: string | null, back?: string | null, deck?: any | null, cues?: Array<string | null> | null, tags?: Array<string | null> | null }> };
-
 export type CreateWordMutationVariables = Exact<{
   record: CreateOneWordInput;
 }>;
@@ -616,6 +596,14 @@ export type CreateFlashCardMutationVariables = Exact<{
 
 export type CreateFlashCardMutation = { flashCardCreateOne?: { recordId?: any | null } | null };
 
+export type UpdateFlashCardMutationVariables = Exact<{
+  id: Scalars['MongoID']['input'];
+  record: UpdateByIdFlashCardInput;
+}>;
+
+
+export type UpdateFlashCardMutation = { flashCardUpdateById?: { recordId?: any | null } | null };
+
 export type CreateDeckMutationVariables = Exact<{
   record: CreateOneDeckInput;
 }>;
@@ -623,7 +611,202 @@ export type CreateDeckMutationVariables = Exact<{
 
 export type CreateDeckMutation = { deckCreateOne?: { recordId?: any | null } | null };
 
+export type UpdateDeckMutationVariables = Exact<{
+  id: Scalars['MongoID']['input'];
+  record: UpdateByIdDeckInput;
+}>;
 
+
+export type UpdateDeckMutation = { deckUpdateById?: { recordId?: any | null } | null };
+
+export type GetWordsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetWordsQuery = { wordMany: Array<{ english?: string | null, polish?: string | null, englishDescription?: string | null, polishDescription?: string | null, tags?: Array<string | null> | null, wordGender?: EnumWordWordGender | null, wordType?: EnumWordWordType | null }> };
+
+export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetUsersQuery = { userMany: Array<{ name: string }> };
+
+export type GetDecksQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetDecksQuery = { deckMany: Array<{ _id: any, name?: string | null, reversed: boolean }> };
+
+export type GetFlashCardsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetFlashCardsQuery = { flashCardMany: Array<{ _id: any, front: string, back: string, deck?: any | null, cues?: Array<string | null> | null, tags?: Array<string | null> | null }> };
+
+
+export const CreateWordDocument = gql`
+    mutation CreateWord($record: CreateOneWordInput!) {
+  wordCreateOne(record: $record) {
+    recordId
+  }
+}
+    `;
+export type CreateWordMutationFn = Apollo.MutationFunction<CreateWordMutation, CreateWordMutationVariables>;
+
+/**
+ * __useCreateWordMutation__
+ *
+ * To run a mutation, you first call `useCreateWordMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateWordMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createWordMutation, { data, loading, error }] = useCreateWordMutation({
+ *   variables: {
+ *      record: // value for 'record'
+ *   },
+ * });
+ */
+export function useCreateWordMutation(baseOptions?: Apollo.MutationHookOptions<CreateWordMutation, CreateWordMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateWordMutation, CreateWordMutationVariables>(CreateWordDocument, options);
+      }
+export type CreateWordMutationHookResult = ReturnType<typeof useCreateWordMutation>;
+export type CreateWordMutationResult = Apollo.MutationResult<CreateWordMutation>;
+export type CreateWordMutationOptions = Apollo.BaseMutationOptions<CreateWordMutation, CreateWordMutationVariables>;
+export const CreateFlashCardDocument = gql`
+    mutation CreateFlashCard($record: CreateOneFlashCardInput!) {
+  flashCardCreateOne(record: $record) {
+    recordId
+  }
+}
+    `;
+export type CreateFlashCardMutationFn = Apollo.MutationFunction<CreateFlashCardMutation, CreateFlashCardMutationVariables>;
+
+/**
+ * __useCreateFlashCardMutation__
+ *
+ * To run a mutation, you first call `useCreateFlashCardMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateFlashCardMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createFlashCardMutation, { data, loading, error }] = useCreateFlashCardMutation({
+ *   variables: {
+ *      record: // value for 'record'
+ *   },
+ * });
+ */
+export function useCreateFlashCardMutation(baseOptions?: Apollo.MutationHookOptions<CreateFlashCardMutation, CreateFlashCardMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateFlashCardMutation, CreateFlashCardMutationVariables>(CreateFlashCardDocument, options);
+      }
+export type CreateFlashCardMutationHookResult = ReturnType<typeof useCreateFlashCardMutation>;
+export type CreateFlashCardMutationResult = Apollo.MutationResult<CreateFlashCardMutation>;
+export type CreateFlashCardMutationOptions = Apollo.BaseMutationOptions<CreateFlashCardMutation, CreateFlashCardMutationVariables>;
+export const UpdateFlashCardDocument = gql`
+    mutation UpdateFlashCard($id: MongoID!, $record: UpdateByIdFlashCardInput!) {
+  flashCardUpdateById(_id: $id, record: $record) {
+    recordId
+  }
+}
+    `;
+export type UpdateFlashCardMutationFn = Apollo.MutationFunction<UpdateFlashCardMutation, UpdateFlashCardMutationVariables>;
+
+/**
+ * __useUpdateFlashCardMutation__
+ *
+ * To run a mutation, you first call `useUpdateFlashCardMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateFlashCardMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateFlashCardMutation, { data, loading, error }] = useUpdateFlashCardMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      record: // value for 'record'
+ *   },
+ * });
+ */
+export function useUpdateFlashCardMutation(baseOptions?: Apollo.MutationHookOptions<UpdateFlashCardMutation, UpdateFlashCardMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateFlashCardMutation, UpdateFlashCardMutationVariables>(UpdateFlashCardDocument, options);
+      }
+export type UpdateFlashCardMutationHookResult = ReturnType<typeof useUpdateFlashCardMutation>;
+export type UpdateFlashCardMutationResult = Apollo.MutationResult<UpdateFlashCardMutation>;
+export type UpdateFlashCardMutationOptions = Apollo.BaseMutationOptions<UpdateFlashCardMutation, UpdateFlashCardMutationVariables>;
+export const CreateDeckDocument = gql`
+    mutation CreateDeck($record: CreateOneDeckInput!) {
+  deckCreateOne(record: $record) {
+    recordId
+  }
+}
+    `;
+export type CreateDeckMutationFn = Apollo.MutationFunction<CreateDeckMutation, CreateDeckMutationVariables>;
+
+/**
+ * __useCreateDeckMutation__
+ *
+ * To run a mutation, you first call `useCreateDeckMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateDeckMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createDeckMutation, { data, loading, error }] = useCreateDeckMutation({
+ *   variables: {
+ *      record: // value for 'record'
+ *   },
+ * });
+ */
+export function useCreateDeckMutation(baseOptions?: Apollo.MutationHookOptions<CreateDeckMutation, CreateDeckMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateDeckMutation, CreateDeckMutationVariables>(CreateDeckDocument, options);
+      }
+export type CreateDeckMutationHookResult = ReturnType<typeof useCreateDeckMutation>;
+export type CreateDeckMutationResult = Apollo.MutationResult<CreateDeckMutation>;
+export type CreateDeckMutationOptions = Apollo.BaseMutationOptions<CreateDeckMutation, CreateDeckMutationVariables>;
+export const UpdateDeckDocument = gql`
+    mutation UpdateDeck($id: MongoID!, $record: UpdateByIdDeckInput!) {
+  deckUpdateById(_id: $id, record: $record) {
+    recordId
+  }
+}
+    `;
+export type UpdateDeckMutationFn = Apollo.MutationFunction<UpdateDeckMutation, UpdateDeckMutationVariables>;
+
+/**
+ * __useUpdateDeckMutation__
+ *
+ * To run a mutation, you first call `useUpdateDeckMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateDeckMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateDeckMutation, { data, loading, error }] = useUpdateDeckMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      record: // value for 'record'
+ *   },
+ * });
+ */
+export function useUpdateDeckMutation(baseOptions?: Apollo.MutationHookOptions<UpdateDeckMutation, UpdateDeckMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateDeckMutation, UpdateDeckMutationVariables>(UpdateDeckDocument, options);
+      }
+export type UpdateDeckMutationHookResult = ReturnType<typeof useUpdateDeckMutation>;
+export type UpdateDeckMutationResult = Apollo.MutationResult<UpdateDeckMutation>;
+export type UpdateDeckMutationOptions = Apollo.BaseMutationOptions<UpdateDeckMutation, UpdateDeckMutationVariables>;
 export const GetWordsDocument = gql`
     query GetWords {
   wordMany {
@@ -713,6 +896,7 @@ export const GetDecksDocument = gql`
   deckMany {
     _id
     name
+    reversed
   }
 }
     `;
@@ -792,102 +976,3 @@ export type GetFlashCardsQueryHookResult = ReturnType<typeof useGetFlashCardsQue
 export type GetFlashCardsLazyQueryHookResult = ReturnType<typeof useGetFlashCardsLazyQuery>;
 export type GetFlashCardsSuspenseQueryHookResult = ReturnType<typeof useGetFlashCardsSuspenseQuery>;
 export type GetFlashCardsQueryResult = Apollo.QueryResult<GetFlashCardsQuery, GetFlashCardsQueryVariables>;
-export const CreateWordDocument = gql`
-    mutation CreateWord($record: CreateOneWordInput!) {
-  wordCreateOne(record: $record) {
-    recordId
-  }
-}
-    `;
-export type CreateWordMutationFn = Apollo.MutationFunction<CreateWordMutation, CreateWordMutationVariables>;
-
-/**
- * __useCreateWordMutation__
- *
- * To run a mutation, you first call `useCreateWordMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateWordMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createWordMutation, { data, loading, error }] = useCreateWordMutation({
- *   variables: {
- *      record: // value for 'record'
- *   },
- * });
- */
-export function useCreateWordMutation(baseOptions?: Apollo.MutationHookOptions<CreateWordMutation, CreateWordMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateWordMutation, CreateWordMutationVariables>(CreateWordDocument, options);
-      }
-export type CreateWordMutationHookResult = ReturnType<typeof useCreateWordMutation>;
-export type CreateWordMutationResult = Apollo.MutationResult<CreateWordMutation>;
-export type CreateWordMutationOptions = Apollo.BaseMutationOptions<CreateWordMutation, CreateWordMutationVariables>;
-export const CreateFlashCardDocument = gql`
-    mutation CreateFlashCard($record: CreateOneFlashCardInput!) {
-  flashCardCreateOne(record: $record) {
-    recordId
-  }
-}
-    `;
-export type CreateFlashCardMutationFn = Apollo.MutationFunction<CreateFlashCardMutation, CreateFlashCardMutationVariables>;
-
-/**
- * __useCreateFlashCardMutation__
- *
- * To run a mutation, you first call `useCreateFlashCardMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateFlashCardMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createFlashCardMutation, { data, loading, error }] = useCreateFlashCardMutation({
- *   variables: {
- *      record: // value for 'record'
- *   },
- * });
- */
-export function useCreateFlashCardMutation(baseOptions?: Apollo.MutationHookOptions<CreateFlashCardMutation, CreateFlashCardMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateFlashCardMutation, CreateFlashCardMutationVariables>(CreateFlashCardDocument, options);
-      }
-export type CreateFlashCardMutationHookResult = ReturnType<typeof useCreateFlashCardMutation>;
-export type CreateFlashCardMutationResult = Apollo.MutationResult<CreateFlashCardMutation>;
-export type CreateFlashCardMutationOptions = Apollo.BaseMutationOptions<CreateFlashCardMutation, CreateFlashCardMutationVariables>;
-export const CreateDeckDocument = gql`
-    mutation CreateDeck($record: CreateOneDeckInput!) {
-  deckCreateOne(record: $record) {
-    recordId
-  }
-}
-    `;
-export type CreateDeckMutationFn = Apollo.MutationFunction<CreateDeckMutation, CreateDeckMutationVariables>;
-
-/**
- * __useCreateDeckMutation__
- *
- * To run a mutation, you first call `useCreateDeckMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateDeckMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createDeckMutation, { data, loading, error }] = useCreateDeckMutation({
- *   variables: {
- *      record: // value for 'record'
- *   },
- * });
- */
-export function useCreateDeckMutation(baseOptions?: Apollo.MutationHookOptions<CreateDeckMutation, CreateDeckMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateDeckMutation, CreateDeckMutationVariables>(CreateDeckDocument, options);
-      }
-export type CreateDeckMutationHookResult = ReturnType<typeof useCreateDeckMutation>;
-export type CreateDeckMutationResult = Apollo.MutationResult<CreateDeckMutation>;
-export type CreateDeckMutationOptions = Apollo.BaseMutationOptions<CreateDeckMutation, CreateDeckMutationVariables>;

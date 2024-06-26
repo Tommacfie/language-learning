@@ -16,7 +16,11 @@ const FlashCardSchema = new Schema({
 const FlashCardModel = model('FlashCard', FlashCardSchema);
 
 // Generate GraphQL Type
-const FlashCardType = composeWithMongoose(FlashCardModel);
+const FlashCardType = composeWithMongoose(FlashCardModel, {
+  fields: {
+    remove: ['__v'],
+  },
+});
 
 // Add fields and resolvers to rootQuery
 schemaComposer.Query.addFields({

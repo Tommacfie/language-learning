@@ -7,7 +7,7 @@ const { Schema, model } = mongoose;
 // Mongoose model
 const DeckSchema = new Schema({
   name: { type: String, unique: true },
-  reversed: { type: Boolean, default: false },
+  reversed: { type: Boolean, default: false, required: true },
   flashCards: [{ type: Schema.Types.ObjectId, ref: 'FlashCard' }],
   tags: [String],
 });
@@ -15,7 +15,11 @@ const DeckSchema = new Schema({
 const DeckModel = model('Deck', DeckSchema);
 
 // Generate GraphQL Type
-const DeckType = composeWithMongoose(DeckModel);
+const DeckType = composeWithMongoose(DeckModel, {
+  fields: {
+    remove: ['__v', '__typeName'],
+  },
+});
 
 // Add fields and resolvers to rootQuery
 schemaComposer.Query.addFields({

@@ -1,0 +1,25 @@
+mutation CreateWord($record: CreateOneWordInput!) {
+  wordCreateOne(record: $record) {
+    recordId
+  }
+}
+mutation CreateFlashCard($record: CreateOneFlashCardInput!) {
+  flashCardCreateOne(record: $record) {
+    recordId
+  }
+}
+mutation UpdateFlashCard($id: MongoID!, $record: UpdateByIdFlashCardInput!) {
+  flashCardUpdateById(_id: $id, record: $record) {
+    recordId
+  }
+}
+mutation CreateDeck($record: CreateOneDeckInput!) {
+  deckCreateOne(record: $record) {
+    recordId
+  }
+}
+mutation UpdateDeck($id: MongoID!, $record: UpdateByIdDeckInput!) {
+  deckUpdateById(_id: $id, record: $record) {
+    recordId
+  }
+}
