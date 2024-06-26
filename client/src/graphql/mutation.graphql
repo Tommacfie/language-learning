@@ -1,8 +1,21 @@
+# Word
 mutation CreateWord($record: CreateOneWordInput!) {
   wordCreateOne(record: $record) {
     recordId
   }
 }
+mutation UpdateWord($id: MongoID!, $record: UpdateByIdWordInput!) {
+  wordUpdateById(_id: $id, record: $record) {
+    recordId
+  }
+}
+mutation RemoveWord($id: MongoID!) {
+  wordRemoveById(_id: $id) {
+    recordId
+  }
+}
+
+# Flashcard
 mutation CreateFlashCard($record: CreateOneFlashCardInput!) {
   flashCardCreateOne(record: $record) {
     recordId
@@ -13,6 +26,13 @@ mutation UpdateFlashCard($id: MongoID!, $record: UpdateByIdFlashCardInput!) {
     recordId
   }
 }
+mutation RemoveFlashCard($id: MongoID!) {
+  flashCardRemoveById(_id: $id) {
+    recordId
+  }
+}
+
+# Deck
 mutation CreateDeck($record: CreateOneDeckInput!) {
   deckCreateOne(record: $record) {
     recordId
@@ -20,6 +40,11 @@ mutation CreateDeck($record: CreateOneDeckInput!) {
 }
 mutation UpdateDeck($id: MongoID!, $record: UpdateByIdDeckInput!) {
   deckUpdateById(_id: $id, record: $record) {
+    recordId
+  }
+}
+mutation RemoveDeck($id: MongoID!) {
+  deckRemoveById(_id: $id) {
     recordId
   }
 }

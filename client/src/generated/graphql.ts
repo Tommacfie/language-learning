@@ -589,6 +589,21 @@ export type CreateWordMutationVariables = Exact<{
 
 export type CreateWordMutation = { wordCreateOne?: { recordId?: any | null } | null };
 
+export type UpdateWordMutationVariables = Exact<{
+  id: Scalars['MongoID']['input'];
+  record: UpdateByIdWordInput;
+}>;
+
+
+export type UpdateWordMutation = { wordUpdateById?: { recordId?: any | null } | null };
+
+export type RemoveWordMutationVariables = Exact<{
+  id: Scalars['MongoID']['input'];
+}>;
+
+
+export type RemoveWordMutation = { wordRemoveById?: { recordId?: any | null } | null };
+
 export type CreateFlashCardMutationVariables = Exact<{
   record: CreateOneFlashCardInput;
 }>;
@@ -604,6 +619,13 @@ export type UpdateFlashCardMutationVariables = Exact<{
 
 export type UpdateFlashCardMutation = { flashCardUpdateById?: { recordId?: any | null } | null };
 
+export type RemoveFlashCardMutationVariables = Exact<{
+  id: Scalars['MongoID']['input'];
+}>;
+
+
+export type RemoveFlashCardMutation = { flashCardRemoveById?: { recordId?: any | null } | null };
+
 export type CreateDeckMutationVariables = Exact<{
   record: CreateOneDeckInput;
 }>;
@@ -618,6 +640,13 @@ export type UpdateDeckMutationVariables = Exact<{
 
 
 export type UpdateDeckMutation = { deckUpdateById?: { recordId?: any | null } | null };
+
+export type RemoveDeckMutationVariables = Exact<{
+  id: Scalars['MongoID']['input'];
+}>;
+
+
+export type RemoveDeckMutation = { deckRemoveById?: { recordId?: any | null } | null };
 
 export type GetWordsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -673,6 +702,73 @@ export function useCreateWordMutation(baseOptions?: Apollo.MutationHookOptions<C
 export type CreateWordMutationHookResult = ReturnType<typeof useCreateWordMutation>;
 export type CreateWordMutationResult = Apollo.MutationResult<CreateWordMutation>;
 export type CreateWordMutationOptions = Apollo.BaseMutationOptions<CreateWordMutation, CreateWordMutationVariables>;
+export const UpdateWordDocument = gql`
+    mutation UpdateWord($id: MongoID!, $record: UpdateByIdWordInput!) {
+  wordUpdateById(_id: $id, record: $record) {
+    recordId
+  }
+}
+    `;
+export type UpdateWordMutationFn = Apollo.MutationFunction<UpdateWordMutation, UpdateWordMutationVariables>;
+
+/**
+ * __useUpdateWordMutation__
+ *
+ * To run a mutation, you first call `useUpdateWordMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateWordMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateWordMutation, { data, loading, error }] = useUpdateWordMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      record: // value for 'record'
+ *   },
+ * });
+ */
+export function useUpdateWordMutation(baseOptions?: Apollo.MutationHookOptions<UpdateWordMutation, UpdateWordMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateWordMutation, UpdateWordMutationVariables>(UpdateWordDocument, options);
+      }
+export type UpdateWordMutationHookResult = ReturnType<typeof useUpdateWordMutation>;
+export type UpdateWordMutationResult = Apollo.MutationResult<UpdateWordMutation>;
+export type UpdateWordMutationOptions = Apollo.BaseMutationOptions<UpdateWordMutation, UpdateWordMutationVariables>;
+export const RemoveWordDocument = gql`
+    mutation RemoveWord($id: MongoID!) {
+  wordRemoveById(_id: $id) {
+    recordId
+  }
+}
+    `;
+export type RemoveWordMutationFn = Apollo.MutationFunction<RemoveWordMutation, RemoveWordMutationVariables>;
+
+/**
+ * __useRemoveWordMutation__
+ *
+ * To run a mutation, you first call `useRemoveWordMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveWordMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeWordMutation, { data, loading, error }] = useRemoveWordMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useRemoveWordMutation(baseOptions?: Apollo.MutationHookOptions<RemoveWordMutation, RemoveWordMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemoveWordMutation, RemoveWordMutationVariables>(RemoveWordDocument, options);
+      }
+export type RemoveWordMutationHookResult = ReturnType<typeof useRemoveWordMutation>;
+export type RemoveWordMutationResult = Apollo.MutationResult<RemoveWordMutation>;
+export type RemoveWordMutationOptions = Apollo.BaseMutationOptions<RemoveWordMutation, RemoveWordMutationVariables>;
 export const CreateFlashCardDocument = gql`
     mutation CreateFlashCard($record: CreateOneFlashCardInput!) {
   flashCardCreateOne(record: $record) {
@@ -740,6 +836,39 @@ export function useUpdateFlashCardMutation(baseOptions?: Apollo.MutationHookOpti
 export type UpdateFlashCardMutationHookResult = ReturnType<typeof useUpdateFlashCardMutation>;
 export type UpdateFlashCardMutationResult = Apollo.MutationResult<UpdateFlashCardMutation>;
 export type UpdateFlashCardMutationOptions = Apollo.BaseMutationOptions<UpdateFlashCardMutation, UpdateFlashCardMutationVariables>;
+export const RemoveFlashCardDocument = gql`
+    mutation RemoveFlashCard($id: MongoID!) {
+  flashCardRemoveById(_id: $id) {
+    recordId
+  }
+}
+    `;
+export type RemoveFlashCardMutationFn = Apollo.MutationFunction<RemoveFlashCardMutation, RemoveFlashCardMutationVariables>;
+
+/**
+ * __useRemoveFlashCardMutation__
+ *
+ * To run a mutation, you first call `useRemoveFlashCardMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveFlashCardMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeFlashCardMutation, { data, loading, error }] = useRemoveFlashCardMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useRemoveFlashCardMutation(baseOptions?: Apollo.MutationHookOptions<RemoveFlashCardMutation, RemoveFlashCardMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemoveFlashCardMutation, RemoveFlashCardMutationVariables>(RemoveFlashCardDocument, options);
+      }
+export type RemoveFlashCardMutationHookResult = ReturnType<typeof useRemoveFlashCardMutation>;
+export type RemoveFlashCardMutationResult = Apollo.MutationResult<RemoveFlashCardMutation>;
+export type RemoveFlashCardMutationOptions = Apollo.BaseMutationOptions<RemoveFlashCardMutation, RemoveFlashCardMutationVariables>;
 export const CreateDeckDocument = gql`
     mutation CreateDeck($record: CreateOneDeckInput!) {
   deckCreateOne(record: $record) {
@@ -807,6 +936,39 @@ export function useUpdateDeckMutation(baseOptions?: Apollo.MutationHookOptions<U
 export type UpdateDeckMutationHookResult = ReturnType<typeof useUpdateDeckMutation>;
 export type UpdateDeckMutationResult = Apollo.MutationResult<UpdateDeckMutation>;
 export type UpdateDeckMutationOptions = Apollo.BaseMutationOptions<UpdateDeckMutation, UpdateDeckMutationVariables>;
+export const RemoveDeckDocument = gql`
+    mutation RemoveDeck($id: MongoID!) {
+  deckRemoveById(_id: $id) {
+    recordId
+  }
+}
+    `;
+export type RemoveDeckMutationFn = Apollo.MutationFunction<RemoveDeckMutation, RemoveDeckMutationVariables>;
+
+/**
+ * __useRemoveDeckMutation__
+ *
+ * To run a mutation, you first call `useRemoveDeckMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveDeckMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeDeckMutation, { data, loading, error }] = useRemoveDeckMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useRemoveDeckMutation(baseOptions?: Apollo.MutationHookOptions<RemoveDeckMutation, RemoveDeckMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemoveDeckMutation, RemoveDeckMutationVariables>(RemoveDeckDocument, options);
+      }
+export type RemoveDeckMutationHookResult = ReturnType<typeof useRemoveDeckMutation>;
+export type RemoveDeckMutationResult = Apollo.MutationResult<RemoveDeckMutation>;
+export type RemoveDeckMutationOptions = Apollo.BaseMutationOptions<RemoveDeckMutation, RemoveDeckMutationVariables>;
 export const GetWordsDocument = gql`
     query GetWords {
   wordMany {
