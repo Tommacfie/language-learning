@@ -1,5 +1,4 @@
-import React from "react";
-import { useGetWordsQuery } from "../generated/graphql";
+import { useGetWordsQuery } from "~/generated/graphql";
 
 export const ShowWords = () => {
   const { data } = useGetWordsQuery();

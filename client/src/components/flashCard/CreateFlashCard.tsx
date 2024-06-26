@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import { ApolloClient } from "@apollo/client";
+import { useState } from "react";
 import {
   useCreateFlashCardMutation,
   useGetDecksQuery,
-} from "../generated/graphql";
+} from "~/generated/graphql";
 
 type FlashCardInputType = {
   front: string;

@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
-  EnumWordWordGender,
   EnumWordWordType,
+  EnumWordWordGender,
   useCreateWordMutation,
-} from "../generated/graphql";
-import { ApolloClient } from "@apollo/client";
+} from "~/generated/graphql";
 
 type WordInputType = {
   english?: string;

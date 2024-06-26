@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import NavBar from "../components/navigation/NavBar";
 
 const MainContainer = ({ children }: { children: ReactNode }) => {
