@@ -25,6 +25,7 @@ export const App = () => {
             <Route path='/edit'></Route>
           </Route>
         </Route>
+        <Route component={ShowDecks} />
       </Switch>
     </MainContainer>
   );
